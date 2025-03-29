@@ -9,13 +9,17 @@ export interface Location {
   };
   country: string;
   region: string;
-  mainImage: string;
+  mainImage: {
+    url: string;
+    imagePosition?: string;
+  };
   instagramTag?: string;
   bestTimeToVisit: string[];
   averageTemp: string;
   accessibilityLevel: 'easy' | 'intermediate' | 'challenging';
   type: ('nature' | 'architecture' | 'cultural' | 'historical')[];
   religions: string[];
+  date: Date;
   details?: {
     category: string;
     description: string;
@@ -27,6 +31,7 @@ export interface Location {
 export const SAMPLE_LOCATIONS: Location[] = [
   {
     id: '1',
+    date: new Date('2025-03-29'),
     name: 'Socotra Island',
     description:
       'Often called the most alien-looking place on Earth, Socotra is home to plants and trees found nowhere else on the planet. The iconic Dragon Blood Trees and bottle-shaped Desert Roses create an otherworldly landscape that seems straight out of a science fiction movie.',
@@ -38,7 +43,9 @@ export const SAMPLE_LOCATIONS: Location[] = [
     country: 'Yemen',
     region: 'Arabian Sea',
 
-    mainImage: 'https://images.unsplash.com/photo-1642425150068-422fef94a8ea',
+    mainImage: {
+      url: 'https://images.unsplash.com/photo-1642425150068-422fef94a8ea',
+    },
     instagramTag: 'socotra',
     bestTimeToVisit: ['October', 'November', 'December', 'January'],
     averageTemp: '25°C to 30°C',
@@ -91,7 +98,9 @@ export const SAMPLE_LOCATIONS: Location[] = [
     },
     country: 'China',
     region: 'Hunan',
-    mainImage: 'https://images.unsplash.com/photo-1549883839-c22d9d06e131',
+    mainImage: {
+      url: 'https://images.unsplash.com/photo-1549883839-c22d9d06e131',
+    },
     instagramTag: 'zhangjiajieglassbridge',
     bestTimeToVisit: ['April', 'May', 'September', 'October'],
     averageTemp: '20°C to 25°C',
