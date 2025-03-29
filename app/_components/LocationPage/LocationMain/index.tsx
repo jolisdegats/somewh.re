@@ -1,52 +1,48 @@
 import Image from '@/app/_components/Library/Image';
 
 const LocationMain = ({
-  type,
+//   type,
   name,
   country,
   region,
-  coordinates,
   description,
   mainImageUrl,
   mainImagePosition,
+  date
 }: {
   type: string[];
   name: string;
   country: string;
   region: string;
-  coordinates: {
-    latitude: number;
-    longitude: number;
-  };
   description: string;
   mainImageUrl: string;
   mainImagePosition?: string;
+  date: Date;
 }) => {
   return (
     <div className="grid grid-cols-12 min-h-screen">
       <div className="col-span-6 p-16 flex flex-col justify-end">
         <div className="max-w-2xl">
-          <div className="space-y-2 mb-8">
-            <div className="text-sm uppercase tracking-wider text-gray-500">{type.join(' • ')}</div>
+        <div className="text-sm uppercase tracking-wider text-gray-500">
+              {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}<br/>
+              {/* {type.join(' • ')} */}
+            </div>
+          <div className="space-y-2 mb-4 mt-2">
             <h1 className="font-display text-8xl">{name}</h1>
           </div>
 
-          <div className="grid grid-cols-3 gap-8 mb-12 text-sm">
-            <div>
-              <p className="text-gray-500 uppercase tracking-wider mb-1 font-semibold">Country</p>
-              <p className="font-medium">{country}</p>
+          <div className="grid grid-cols-4 gap-8 mb-12 text-sm">
+          <div>
+              <small className="text-gray-500 uppercase tracking-wider mb-1">Continent</small>
+              <p className="font-medium text-gray-600">{country}</p>
             </div>
             <div>
-              <p className="text-gray-500 uppercase tracking-wider mb-1 font-semibold">Region</p>
-              <p className="font-medium">{region}</p>
+              <small className="text-gray-500 uppercase tracking-wider mb-1">Country</small>
+              <p className="font-medium text-gray-600">{country}</p>
             </div>
             <div>
-              <p className="text-gray-500 uppercase tracking-wider mb-1 font-semibold">
-                Coordinates
-              </p>
-              <p className="font-medium">
-                {coordinates.latitude.toFixed(4)}°, {coordinates.longitude.toFixed(4)}°
-              </p>
+              <small className="text-gray-500 uppercase tracking-wider mb-1">Region</small>
+              <p className="font-medium text-gray-600">{region}</p>
             </div>
           </div>
 
@@ -57,7 +53,8 @@ const LocationMain = ({
         <Image
           src={mainImageUrl}
           alt={name}
-          className={`w-full h-full object-cover ${mainImagePosition ?? 'object-center'}`}
+          imagePosition={mainImagePosition}
+          sizes="33vw"
         />
       </div>
     </div>

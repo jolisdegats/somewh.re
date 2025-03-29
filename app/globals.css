@@ -16,23 +16,4 @@
   .text-balance {
     text-wrap: balance;
   }
-
-  .vertical-line-container::before,
-  .vertical-line-container::after {
-    content: '';
-    display: inline-block;
-    width: 1px;
-    height: 6rem; /* Adjust height as needed */
-    background-color: black;
-    position: relative;
-    vertical-align: middle;
-  }
-
-  .vertical-line-container::before {
-    margin-right: 1.5rem;
-  }
-
-  .vertical-line-container::after {
-    margin-left: 1.5rem;
-  }
 }

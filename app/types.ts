@@ -88,6 +88,7 @@ export const SAMPLE_LOCATIONS: Location[] = [
   },
   {
     id: '2',
+    date: new Date('2025-03-29'),
     name: 'Zhangjiajie Glass Bridge',
     description:
       'Suspended 300 meters above the canyon floor, this architectural marvel stretches across the Grand Canyon of Zhangjiajie. The transparent glass walkway offers breathtaking views of the surrounding landscape that inspired the floating mountains in Avatar.',

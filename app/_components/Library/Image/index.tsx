@@ -5,21 +5,35 @@ const Image = ({
   alt,
   className,
   disableSmoothLoading = false,
+  fill = true,
+  width,
+  imagePosition = 'object-center',
+  height,
+  sizes,
+  imageFill = 'object-cover',
 }: {
   src: string;
   alt: string;
   className?: string;
   disableSmoothLoading?: boolean;
+  fill?: boolean;
+  width?: number;
+  height?: number;
+  imagePosition?: string;
+  imageFill?: string;
+  sizes?: string;
 }) => {
   return (
     <NextImage
       src={src}
       alt={alt}
-      layout="fill"
-      objectFit="cover"
-      className={`${!disableSmoothLoading && 'transition-opacity opacity-0 duration-[2s]'} ${className}`}
-      onLoadingComplete={e => {
-        if (!disableSmoothLoading) e.classList.remove('opacity-0');
+      fill={fill}
+      width={width}
+      height={height}
+      sizes={sizes}
+      className={`${!disableSmoothLoading && 'transition-opacity opacity-0 duration-[2s]'} ${imageFill} ${imagePosition} ${className}`}
+      onLoad={e => {
+        (e.target as HTMLElement).classList.remove('opacity-0');
       }}
     />
   );

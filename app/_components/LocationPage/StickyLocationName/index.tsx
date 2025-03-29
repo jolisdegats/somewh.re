@@ -7,7 +7,7 @@ const StickyLocationName = ({ locationName }: { locationName: string }) => {
             <div className="w-[1px] h-full bg-black mt-6" />
             <div className="flex items-center">
               <h2 className="font-display text-black text-6xl font-bold">{locationName}</h2>
-              <div className="w-[1px] h-[30px] bg-black mb-6" />
+              <div className="w-[1px] h-16 bg-black mb-6" />
             </div>
           </div>
         </div>
