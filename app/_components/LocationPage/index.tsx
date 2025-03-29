@@ -63,41 +63,15 @@ export const LocationPage: React.FC<LocationPageProps> = ({ location }) => {
                     <span className="capitalize">{location.difficulty}</span>
                   </div>
                 </div> */}
-      {/* {location.details && (
-        <div className="grid grid-cols-12 min-h-screen justify-start pt-24">
-          {location.details.map(detail => (
-            <div key={detail.category} className="col-span-12 grid grid-cols-12 gap-12 m-16">
-              <div className="col-span-2 relative">
-                <h2 className="font-display text-xl font-black tracking-wider">
-                  {detail.category}
-                </h2>
-              </div>
-              <div className="col-span-5 relative">
-                <p className="text-gray-600">{detail.description}</p>
-              </div>
-              <div className="col-span-5 relative">
-                <div className="grid grid-cols-1 gap-4">
-                  {detail.image && (
-                    <div className="h-[400px] w-[350px] overflow-hidden">
-                      <img
-                        src={detail.image}
-                        alt={`${location.name} ${detail.category} 1`}
-                        className="w-full h-full object-cover object-center"
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )} */}
       <div className="relative">
-        <div className="sticky left-8 -top-1/2 transform -translate-x-1/2 -rotate-90 origin-center">
-          <h2 className="font-display text-black text-6xl font-bold whitespace-nowrap">
-            {location.name}
-          </h2>
+        <div className="sticky top-0 left-0 h-0">
+          <div className="absolute -rotate-270 origin-left translate-x-24 translate-y-[100%]">
+            <h2 className="font-display text-black text-6xl font-bold whitespace-nowrap rotate-180">
+              {location.name}
+            </h2>
+          </div>
         </div>
+
         <div className="min-h-screen">
           {location.details && (
             <div className="grid grid-cols-12 justify-start pt-24 gap-16">

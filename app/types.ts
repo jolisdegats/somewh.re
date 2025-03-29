@@ -12,7 +12,8 @@ export interface Location {
   mainImage: string;
   instagramTag?: string;
   bestTimeToVisit: string[];
-  difficulty: 'easy' | 'moderate' | 'challenging';
+  averageTemp: string;
+  accessibilityLevel: 'easy' | 'intermediate' | 'challenging';
   type: ('nature' | 'architecture' | 'cultural' | 'historical')[];
   details?: {
     category: string;
@@ -38,7 +39,8 @@ export const SAMPLE_LOCATIONS: Location[] = [
     mainImage: 'https://images.unsplash.com/photo-1642425150068-422fef94a8ea',
     instagramTag: 'socotra',
     bestTimeToVisit: ['October', 'November', 'December', 'January'],
-    difficulty: 'challenging',
+    averageTemp: '25°C to 30°C',
+    accessibilityLevel: 'challenging',
     type: ['nature'],
     details: [
       {
@@ -86,13 +88,14 @@ export const SAMPLE_LOCATIONS: Location[] = [
     mainImage: 'https://images.unsplash.com/photo-1549883839-c22d9d06e131',
     instagramTag: 'zhangjiajieglassbridge',
     bestTimeToVisit: ['April', 'May', 'September', 'October'],
-    difficulty: 'moderate',
+    averageTemp: '20°C to 25°C',
+    accessibilityLevel: 'intermediate',
     type: ['architecture', 'nature'],
     details: [
       {
         category: 'Architecture',
         description: 'The bridge is a marvel of engineering and design',
-        images: ['https://images.unsplash.com/photo-1549883839-c22d9d06e131'],
+        image: 'https://images.unsplash.com/photo-1549883839-c22d9d06e131',
       },
     ],
   },
