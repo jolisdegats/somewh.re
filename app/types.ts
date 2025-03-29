@@ -15,10 +15,12 @@ export interface Location {
   averageTemp: string;
   accessibilityLevel: 'easy' | 'intermediate' | 'challenging';
   type: ('nature' | 'architecture' | 'cultural' | 'historical')[];
+  religions: string[];
   details?: {
     category: string;
     description: string;
     image: string;
+    imagePosition?: string;
   }[];
 }
 
@@ -42,6 +44,7 @@ export const SAMPLE_LOCATIONS: Location[] = [
     averageTemp: '25°C to 30°C',
     accessibilityLevel: 'challenging',
     type: ['nature'],
+    religions: ['Islam', 'Christianity'],
     details: [
       {
         category: 'Biodiversity',
@@ -49,7 +52,9 @@ export const SAMPLE_LOCATIONS: Location[] = [
           "Socotra is home to over 700 endemic species, many of which exist nowhere else on Earth. The island's isolation has allowed evolution to take a unique path, resulting in surreal flora like the Dragon Blood Tree, with its crimson resin and umbrella-like canopy, and the swollen Desert Rose. These species thrive in microclimates created by the island’s rugged terrain and monsoon winds.",
         image:
           'https://magazine.hortus-focus.fr/wp-content/uploads/sites/2/2018/10/adenium-obesum-rose-du-desert-zanskar.jpg',
+        imagePosition: 'object-[50%_70%]',
       },
+
       // {
       //   category: 'Geology',
       //   description:
@@ -67,6 +72,7 @@ export const SAMPLE_LOCATIONS: Location[] = [
         description:
           'The indigenous people of Socotra speak Soqotri, a unique and ancient Semitic language that exists nowhere else on Earth. Traditionally, Soqotri was solely an oral language, rich in poetry and storytelling. Efforts are underway to develop a written script to document its vast oral literature and ensure its preservation for future generations.',
         image: 'https://images.unsplash.com/photo-1642425145481-d59fbcfde153',
+        imagePosition: 'object-[100%_30%]',
       },
     ],
     // 'https://images.unsplash.com/photo-1642425149790-6067ff132526',
@@ -91,6 +97,7 @@ export const SAMPLE_LOCATIONS: Location[] = [
     averageTemp: '20°C to 25°C',
     accessibilityLevel: 'intermediate',
     type: ['architecture', 'nature'],
+    religions: ['Buddhism', 'Taoism'],
     details: [
       {
         category: 'Architecture',

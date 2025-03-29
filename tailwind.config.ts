@@ -1,4 +1,5 @@
-import type { Config } from 'tailwindcss'
+import { plugin } from 'postcss';
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -14,7 +15,26 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
-}
+  plugins: [
+    plugin(({ addUtilities }: { addUtilities: (utilities: Record<string, unknown>) => void }) => {
+      addUtilities({
+        '.writing-vertical-lr': {
+          'writing-mode': 'sideways-lr',
+          '& sub': {
+            bottom: '0',
+            right: '0.25em',
+          },
+        },
+        '.writing-vertical-rl': {
+          'writing-mode': 'sideways-rl',
+          '& sub': {
+            bottom: '0',
+            right: '0.25em',
+          },
+        },
+      });
+    }),
+  ],
+};
 
-export default config
+export default config;

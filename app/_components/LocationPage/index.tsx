@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 // import { MapPin, Calendar, Compass } from 'lucide-react';
 import { Location } from '@/app/types';
 
@@ -7,6 +7,17 @@ interface LocationPageProps {
 }
 
 export const LocationPage: React.FC<LocationPageProps> = ({ location }) => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [lineHeight, setLineHeight] = useState(0);
+
+  useEffect(() => {
+    if (containerRef.current && titleRef.current) {
+      setLineHeight(containerRef.current?.offsetHeight - titleRef.current?.offsetHeight);
+      console.log(containerRef.current?.offsetHeight - titleRef.current?.offsetHeight);
+    }
+  }, [containerRef.current, titleRef.current]);
+
   return (
     <div className="grid gap-x-20">
       <div className="grid grid-cols-12 min-h-screen">
@@ -63,47 +74,83 @@ export const LocationPage: React.FC<LocationPageProps> = ({ location }) => {
                     <span className="capitalize">{location.difficulty}</span>
                   </div>
                 </div> */}
-      <div className="relative">
-        <div className="sticky top-0 left-0 h-0">
-          <div className="absolute -rotate-270 origin-left translate-x-24 translate-y-[100%]">
-            <h2 className="font-display text-black text-6xl font-bold whitespace-nowrap rotate-180">
-              {location.name}
-            </h2>
+      <div
+        ref={containerRef}
+        className="relative mb-24 min-h-screen grid grid-cols-12 justify-start pt-24 gap-16"
+      >
+        <div className="col-span-2 relative">
+          <div className="sticky top-0 left-0 h-screen flex flex-col translate-x-24">
+            <div className="relative h-full">
+              <div className="absolute left-0 top-0">
+                <div className="[writing-mode:sideways-lr] whitespace-nowrap flex items-center h-full">
+                  {lineHeight && <div className="w-[1px] h-full bg-black mt-6" />}
+                  <div ref={titleRef} className="flex items-center">
+                    <h2 className="font-display text-black text-6xl font-bold">{location.name}</h2>
+                    <div className="w-[1px] h-[30px] bg-black mb-6" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="min-h-screen">
-          {location.details && (
-            <div className="grid grid-cols-12 justify-start pt-24 gap-16">
-              {location.details.map((detail, index) => (
-                <div key={detail.category} className="col-span-12 grid grid-cols-12 gap-16 m-x-16">
-                  <div className="col-span-2 relative order-1" />
-                  <div className={`${index % 2 === 0 ? 'order-3' : 'order-2'} col-span-4 relative`}>
-                    <div className="grid grid-cols-1 gap-4 relative">
-                      {detail.image && (
-                        <div className="h-[250px] w-full overflow-hidden">
-                          <img
-                            src={detail.image}
-                            alt={`${location.name} ${detail.category} 1`}
-                            className="w-full h-full object-cover object-center"
-                          />
-                        </div>
-                      )}
+        <div className="col-span-8 justify-start gap-16">
+          {/* DETAILS */}
+          {location.details?.map((detail, index) => (
+            <div key={detail.category} className="col-span-10 grid grid-cols-12 gap-16 m-x-16">
+              <div className={`${index % 2 === 0 ? 'order-2' : 'order-1'} col-span-6 relative`}>
+                <div className="grid grid-cols-1 gap-4 relative">
+                  {detail.image && (
+                    <div className="h-[250px] w-full overflow-hidden">
+                      <img
+                        src={detail.image}
+                        alt={`${location.name} ${detail.category} 1`}
+                        className={`w-full h-full object-cover ${detail.imagePosition ?? 'object-center'}`}
+                      />
                     </div>
-                  </div>
-                  <div className={`${index % 2 === 0 ? 'order-2' : 'order-3'} col-span-4 relative`}>
-                    <h2 className="font-display text-4xl font-black tracking-wider mb-6 mt-4">
-                      {detail.category}
-                    </h2>
-                    <p className="text-gray-600">{detail.description}</p>
-                  </div>
-                  <div className="col-span-2 relative order-4" />
+                  )}
                 </div>
-              ))}
+              </div>
+              <div className={`${index % 2 === 0 ? 'order-1' : 'order-2'} col-span-6 relative`}>
+                <h2 className="font-display text-4xl font-black tracking-wider mb-6 mt-4">
+                  {detail.category}
+                </h2>
+                <p className="text-gray-600">{detail.description}</p>
+              </div>
             </div>
-          )}
+          ))}
+          {/* OTHER DETAILS */}
+          <div className="pt-36 pb-24 gap-16 text-center">
+            <div className="grid grid-cols-4 gap-16 border-y border-gray-200 py-8">
+              <div className="col-span-1 relative">
+                <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">
+                  Best time to visit
+                </h2>
+                <p className="text-gray-600 uppercase">{location.bestTimeToVisit.join(', ')}</p>
+              </div>
+              <div className="col-span-1 relative">
+                <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">
+                  Average weather
+                </h2>
+                <p className="text-gray-600 uppercase">{location.averageTemp}</p>
+              </div>
+              <div className="col-span-1 relative">
+                <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">
+                  Accessibility
+                </h2>
+                <p className="text-gray-600 uppercase">{location.accessibilityLevel}</p>
+              </div>
+              <div className="col-span-1 relative">
+                <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">
+                  Religions
+                </h2>
+                <p className="text-gray-600 uppercase">{location.religions.join(', ')}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="min-h-screen">XXX</div>
+
+        <div className="col-span-2 relative" />
       </div>
     </div>
   );
