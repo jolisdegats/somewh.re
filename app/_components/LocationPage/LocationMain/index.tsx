@@ -1,19 +1,21 @@
 import Image from '@/app/_components/Library/Image';
 
 const LocationMain = ({
-//   type,
+  //   type,
   name,
   country,
   region,
+  continent,
   description,
   mainImageUrl,
   mainImagePosition,
-  date
+  date,
 }: {
   type: string[];
   name: string;
   country: string;
   region: string;
+  continent: string;
   description: string;
   mainImageUrl: string;
   mainImagePosition?: string;
@@ -23,18 +25,19 @@ const LocationMain = ({
     <div className="grid grid-cols-12 min-h-screen">
       <div className="col-span-6 p-16 flex flex-col justify-end">
         <div className="max-w-2xl">
-        <div className="text-sm uppercase tracking-wider text-gray-500">
-              {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}<br/>
-              {/* {type.join(' • ')} */}
-            </div>
+          <div className="text-sm uppercase tracking-wider text-gray-500">
+            {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            <br />
+            {/* {type.join(' • ')} */}
+          </div>
           <div className="space-y-2 mb-4 mt-2">
             <h1 className="font-display text-8xl">{name}</h1>
           </div>
 
           <div className="grid grid-cols-4 gap-8 mb-12 text-sm">
-          <div>
+            <div>
               <small className="text-gray-500 uppercase tracking-wider mb-1">Continent</small>
-              <p className="font-medium text-gray-600">{country}</p>
+              <p className="font-medium text-gray-600">{continent}</p>
             </div>
             <div>
               <small className="text-gray-500 uppercase tracking-wider mb-1">Country</small>
@@ -50,12 +53,7 @@ const LocationMain = ({
         </div>
       </div>
       <div className="col-span-6 relative">
-        <Image
-          src={mainImageUrl}
-          alt={name}
-          imagePosition={mainImagePosition}
-          sizes="33vw"
-        />
+        <Image src={mainImageUrl} alt={name} imagePosition={mainImagePosition} sizes="33vw" />
       </div>
     </div>
   );

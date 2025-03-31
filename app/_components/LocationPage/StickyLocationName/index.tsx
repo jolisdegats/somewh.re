@@ -1,17 +1,22 @@
+import Sticky from 'react-stickynode';
+
 const StickyLocationName = ({ locationName }: { locationName: string }) => {
   return (
-    <div className="sticky -top-[75px] left-0 flex flex-col translate-x-24 -my-[75px]">
-      <div className="relative h-full ">
-        <div className="absolute left-0 top-[75px]">
-          <div className="[writing-mode:sideways-lr] whitespace-nowrap flex items-center h-full">
-            <div className="w-[1px] h-full bg-black mt-6" />
-            <div className="flex items-center">
-              <h2 className="font-display text-black text-6xl font-bold">{locationName}</h2>
-              <div className="w-[1px] h-16 bg-black mb-6" />
+    <div className="h-full relative">
+      <div id="top" className="top-0 left-0 h-0" />
+      <div id="container" className="h-full relative">
+        <div className="absolute top-0 left-32 w-[1px] bg-black h-full" />
+        <Sticky top="#header" bottomBoundary="#bottom">
+          <div className="sticky translate-x-24">
+            <div className="[writing-mode:sideways-lr] whitespace-nowrap pt-12">
+              <h2 className="font-display text-black text-6xl font-bold px-6 bg-white">
+                {locationName}
+              </h2>
             </div>
           </div>
-        </div>
+        </Sticky>
       </div>
+      <div id="bottom" className="absolute bottom-12 left-0 h-0 w-full" />
     </div>
   );
 };

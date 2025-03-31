@@ -1,12 +1,12 @@
 const LocationAccessibility = ({
   bestTimeToVisit,
   averageTemp,
-  accessibilityLevel,
+  languages,
   religions,
 }: {
   bestTimeToVisit: string[];
   averageTemp: string;
-  accessibilityLevel: string;
+  languages: string[];
   religions: string[];
 }) => {
   return (
@@ -25,10 +25,8 @@ const LocationAccessibility = ({
           <p className="text-gray-600 uppercase">{averageTemp}</p>
         </div>
         <div className="col-span-1 relative">
-          <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">
-            Accessibility
-          </h2>
-          <p className="text-gray-600 uppercase">{accessibilityLevel}</p>
+          <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">Languages</h2>
+          <p className="text-gray-600 uppercase">{languages.join(', ')}</p>
         </div>
         <div className="col-span-1 relative">
           <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">Religions</h2>

@@ -15,6 +15,7 @@ export const LocationPage: React.FC<LocationPageProps> = ({ location }) => {
   return (
     <div className="grid gap-x-20">
       <LocationMain
+        continent={location.continent}
         date={location.date}
         type={location.type}
         name={location.name}
@@ -24,7 +25,7 @@ export const LocationPage: React.FC<LocationPageProps> = ({ location }) => {
         mainImageUrl={location.mainImage.url}
         mainImagePosition={location.mainImage.imagePosition}
       />
-                  {/* <div>
+      {/* <div>
               <small className="text-gray-500 uppercase tracking-wider mb-1">
                 Coordinates
               </small>
@@ -58,14 +59,18 @@ export const LocationPage: React.FC<LocationPageProps> = ({ location }) => {
           <LocationAccessibility
             bestTimeToVisit={location.bestTimeToVisit}
             averageTemp={location.averageTemp}
-            accessibilityLevel={location.accessibilityLevel}
+            languages={location.languages}
             religions={location.religions}
           />
-          <LocationMap coordinates={location.coordinates} country={location.country} />
+          <LocationMap
+            geojson={location.geojson}
+            latitude={location.coordinates.latitude}
+            longitude={location.coordinates.longitude}
+          />
         </div>
-
         <div className="col-span-2 relative" />
       </div>
+      {/* <div className="h-40" /> */}
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useWindowScroll } from '@uidotdev/usehooks';
@@ -8,6 +7,7 @@ const Header = () => {
   const [{ y }] = useWindowScroll();
   return (
     <header
+      id="header"
       className="fixed top-0 left-0 w-full z-50 transition duration-300 ease-in-out "
       style={{
         backgroundColor: y && y > 50 ? 'white' : 'transparent',
