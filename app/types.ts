@@ -33,7 +33,7 @@ export interface Location {
 
 export const SAMPLE_LOCATIONS: Location[] = [
   {
-    id: '1',
+    id: new Date('2025-03-29').getTime().toString(),
     date: new Date('2025-03-29'),
     name: 'Socotra Island',
     description:
@@ -1176,34 +1176,47 @@ export const SAMPLE_LOCATIONS: Location[] = [
     //     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wadi%2C_Socotra_Island_%2810941888296%29.jpg/1600px-Wadi%2C_Socotra_Island_%2810941888296%29.jpg',
   },
   {
-    id: '2',
-    date: new Date('2025-03-29'),
-    name: 'Zhangjiajie Glass Bridge',
+    id: new Date('2025-03-30').getTime().toString(),
+    date: new Date('2025-03-30'),
+    name: 'Danakil Desert',
     description:
-      'Suspended 300 meters above the canyon floor, this architectural marvel stretches across the Grand Canyon of Zhangjiajie. The transparent glass walkway offers breathtaking views of the surrounding landscape that inspired the floating mountains in Avatar.',
-    shortDescription: "The world's longest and highest glass-bottomed bridge",
+      'One of the hottest, driest, and most alien landscapes on Earth, the Danakil Desert in northeastern Ethiopia is a geological wonderland. With acidic hot springs, neon-colored sulfur fields, and active volcanoes like Erta Ale, the region feels like another planet.',
+    shortDescription: 'A scorching desert of fire, salt, and surreal colors',
     coordinates: {
-      latitude: 29.1667,
-      longitude: 110.5333,
+      latitude: 13.8,
+      longitude: 40.47,
     },
-    country: 'China',
-    continent: 'Asia',
-    region: 'Hunan',
+    country: 'Ethiopia',
+    continent: 'Africa',
+    region: 'Afar Region',
     mainImage: {
-      url: 'https://images.unsplash.com/photo-1549883839-c22d9d06e131',
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Ethiopia_-_Dallol.jpg/1920px-Ethiopia_-_Dallol.jpg',
+      // url: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/ET_Afar_asv2018-01_img48_Dallol.jpg',
+      imagePosition: 'object-[65%_50%]',
     },
-    instagramTag: 'zhangjiajieglassbridge',
-    bestTimeToVisit: ['April', 'May', 'September', 'October'],
-    averageTemp: '20°C to 25°C',
-    accessibilityLevel: 'intermediate',
-    type: ['architecture', 'nature'],
-    religions: ['Buddhism', 'Taoism'],
-    languages: ['Chinese'],
+    instagramTag: 'danakildesert',
+    bestTimeToVisit: ['November', 'December', 'January', 'February'],
+    averageTemp: '35°C to 50°C',
+    accessibilityLevel: 'challenging',
+    type: ['nature'],
+    religions: ['Islam', 'Christianity'],
+    languages: ['Afar', 'Amharic'],
     details: [
       {
-        category: 'Architecture',
-        description: 'The bridge is a marvel of engineering and design',
-        image: 'https://images.unsplash.com/photo-1549883839-c22d9d06e131',
+        category: 'Geology',
+        description:
+          'The Danakil Depression lies at the junction of three tectonic plates and is one of the most geologically active areas on the planet. The Dallol hydrothermal field paints the desert with neon greens, yellows, and reds due to mineral-rich acidic pools. Nearby, Erta Ale, one of only a few continuously active lava lakes, offers a fiery spectacle under the night sky.',
+        // image: 'https://images.unsplash.com/photo-1516533075015-a3838414c3ca',
+        image:
+          'https://upload.wikimedia.org/wikipedia/commons/d/d4/ET_Afar_asv2018-01_img48_Dallol.jpg',
+        imagePosition: 'object-[50%_70%]',
+      },
+      {
+        category: 'Culture',
+        description:
+          'The Afar people have lived in this hostile environment for centuries, traditionally harvesting salt from the desert’s vast salt flats. Camel caravans, once a vital part of their economy, still traverse the white plains. Their culture is marked by resilience, oral storytelling, and a deep understanding of the desert’s natural rhythms.',
+        image: 'https://live.staticflickr.com/4841/46084835254_825ffbf045_b.jpg',
+        imagePosition: 'object-[50%_0%]',
       },
     ],
   },

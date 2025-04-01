@@ -49,11 +49,11 @@ const LocationMain = ({
             </div>
           </div>
 
-          <p className="text-xl leading-relaxed text-gray-600 mb-12">{description}</p>
+          <p className="text-xl leading-relaxed text-gray-600 mb-12 text-balance">{description}</p>
         </div>
       </div>
       <div className="col-span-6 relative">
-        <Image src={mainImageUrl} alt={name} imagePosition={mainImagePosition} sizes="33vw" />
+        <Image src={mainImageUrl} alt={name} imagePosition={mainImagePosition} sizes="50vw" />
       </div>
     </div>
   );

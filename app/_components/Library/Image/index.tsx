@@ -31,7 +31,10 @@ const Image = ({
       width={width}
       height={height}
       sizes={sizes}
-      className={`${!disableSmoothLoading && 'transition-opacity opacity-0 duration-[2s]'} ${imageFill} ${imagePosition} ${className}`}
+      draggable={false}
+      className={`${
+        !disableSmoothLoading && 'transition-opacity opacity-0 duration-[2s]'
+      } ${imageFill} ${imagePosition} ${className}`}
       onLoad={e => {
         (e.target as HTMLElement).classList.remove('opacity-0');
       }}
