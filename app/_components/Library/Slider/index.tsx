@@ -35,25 +35,27 @@ const Slider = ({
           shadow-none
           
           [&::-webkit-slider-thumb]:appearance-none
-          [&::-webkit-slider-thumb]:w-0
-          [&::-webkit-slider-thumb]:h-0
+          [&::-webkit-slider-thumb]:w-3
+          [&::-webkit-slider-thumb]:h-3
           [&::-webkit-slider-thumb]:rounded-full
           [&::-webkit-slider-thumb]:bg-black
           [&::-webkit-slider-thumb]:cursor-pointer
-          group-hover:[&::-webkit-slider-thumb]:w-3
-          group-hover:[&::-webkit-slider-thumb]:h-3
-          [&::-webkit-slider-thumb]:transition-all
+          [&::-webkit-slider-thumb]:scale-0
+          [&::-webkit-slider-thumb]:origin-right
+          group-hover:[&::-webkit-slider-thumb]:scale-100
+          [&::-webkit-slider-thumb]:transition-transform
           [&::-webkit-slider-thumb]:duration-150
 
-          [&::-moz-range-thumb]:w-0
-          [&::-moz-range-thumb]:h-0
+          [&::-moz-range-thumb]:w-3
+          [&::-moz-range-thumb]:h-3
           [&::-moz-range-thumb]:rounded-full
           [&::-moz-range-thumb]:bg-black
           [&::-moz-range-thumb]:border-0
           [&::-moz-range-thumb]:cursor-pointer
-          group-hover:[&::-moz-range-thumb]:w-3
-          group-hover:[&::-moz-range-thumb]:h-3
-          [&::-moz-range-thumb]:transition-all
+          [&::-moz-range-thumb]:scale-0
+          [&::-moz-range-thumb]:origin-right
+          group-hover:[&::-moz-range-thumb]:scale-100
+          [&::-moz-range-thumb]:transition-transform
           [&::-moz-range-thumb]:duration-150
 
           [&::-moz-range-progress]:bg-black

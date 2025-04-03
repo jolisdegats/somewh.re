@@ -7,7 +7,8 @@ import Slider from '@/app/_components/Library/Slider';
 
 const LocationHeader = ({ location }: { location: Location }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [volume, setVolume] = useState(80);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [volume, setVolume] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showVolume, setShowVolume] = useState(false);
 
@@ -39,33 +40,47 @@ const LocationHeader = ({ location }: { location: Location }) => {
     }
   };
 
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setShowVolume(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setShowVolume(false);
+    }, 1000);
+  };
+
   const VolumeIcon = volume === 0 ? VolumeOff : volume > 50 ? Volume2 : Volume1;
 
   return (
     <div className="w-full flex items-center justify-end">
-      <div className="relative">
+      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <audio
           ref={audioRef}
           src={location.audio}
           loop
-          autoPlay
-          controls
+          playsInline
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
         />
-        <Button
-          className="flex p-2 relative"
-          onMouseEnter={() => setShowVolume(true)}
-          onMouseLeave={() => setShowVolume(false)}
-        >
+        <Button className="flex p-2">
           <div
-            className={`mr-2 w-[80px] transition-opacity duration-200 ease-in-out ${
-              showVolume ? 'opacity-100' : 'opacity-0'
-            } animate-fade-in`}
+            className={`
+                mr-2
+              overflow-hidden
+              transition-[width]
+              duration-200
+              ease-in-out
+              ${showVolume ? 'w-[80px]' : 'w-0'}
+            `}
           >
-            <Slider value={volume} onChange={handleVolumeChange} min={0} max={100} step={1} />
+            <div className="mr-2 w-full">
+              <Slider value={volume} onChange={handleVolumeChange} min={0} max={100} step={1} />
+            </div>
           </div>
-
           <VolumeIcon size={24} onClick={toggleVolume} />
         </Button>
       </div>
