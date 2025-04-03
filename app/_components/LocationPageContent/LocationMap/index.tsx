@@ -20,6 +20,8 @@ export default function LocationMap({
   geojson?: GeoJSON.FeatureCollection;
 }) {
   const [countryLayerOpacity, setCountryLayerOpacity] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeout = useRef<NodeJS.Timeout>(null);
   const [locationCoords, setLocationCoords] = useState({
     lat: latitude,
     lng: longitude,
@@ -39,9 +41,31 @@ export default function LocationMap({
 
   useEffect(() => {
     if (map.current && isVisible) {
+      setIsScrolling(true);
       flyToLocation({ map: map.current, speed: 0.2 });
+      setIsScrolling(false);
     }
   }, [isVisible, flyToLocation]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolling(true);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+      scrollTimeout.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="col-span-4 pr-18">
@@ -50,6 +74,7 @@ export default function LocationMap({
         <span className="border-l-2 border-black h-6 w-1 mb-2" />
         <div
           style={{
+            pointerEvents: isScrolling ? 'none' : 'auto',
             width: `${mapSizeWithPadding}px`,
             height: `${mapSizeWithPadding}px`,
           }}
@@ -62,7 +87,7 @@ export default function LocationMap({
               height: `${mapSize}px`,
             }}
             className={`circle-clip relative`}
-            onMouseEnter={() => setCountryLayerOpacity(0.5)}
+            onMouseEnter={() => !isScrolling && setCountryLayerOpacity(0.5)}
             onMouseLeave={() => setCountryLayerOpacity(0)}
           >
             <Map
@@ -84,6 +109,12 @@ export default function LocationMap({
               }}
               style={{ width: mapSize, height: mapSize }}
               mapStyle={mapStyle as StyleSpecification}
+              // scrollZoom={!isScrolling}
+              // dragPan={!isScrolling}
+              // dragRotate={!isScrolling}
+              // touchPitch={!isScrolling}
+              // keyboard={!isScrolling}
+              // doubleClickZoom={!isScrolling}
             >
               {geojson && (
                 <Source type="geojson" data={geojson}>
