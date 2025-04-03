@@ -15,7 +15,7 @@ const Slider = ({
   const percentage = ((value - min) / (max - min)) * 100;
 
   return (
-    <div className="w-full h-full y-2">
+    <div className="w-full h-full y-2 group">
       <input
         type="range"
         value={value}
@@ -40,8 +40,8 @@ const Slider = ({
           [&::-webkit-slider-thumb]:rounded-full
           [&::-webkit-slider-thumb]:bg-black
           [&::-webkit-slider-thumb]:cursor-pointer
-          hover:[&::-webkit-slider-thumb]:w-3
-          hover:[&::-webkit-slider-thumb]:h-3
+          group-hover:[&::-webkit-slider-thumb]:w-3
+          group-hover:[&::-webkit-slider-thumb]:h-3
           [&::-webkit-slider-thumb]:transition-all
           [&::-webkit-slider-thumb]:duration-150
 
@@ -51,8 +51,8 @@ const Slider = ({
           [&::-moz-range-thumb]:bg-black
           [&::-moz-range-thumb]:border-0
           [&::-moz-range-thumb]:cursor-pointer
-          hover:[&::-moz-range-thumb]:w-3
-          hover:[&::-moz-range-thumb]:h-3
+          group-hover:[&::-moz-range-thumb]:w-3
+          group-hover:[&::-moz-range-thumb]:h-3
           [&::-moz-range-thumb]:transition-all
           [&::-moz-range-thumb]:duration-150
 
