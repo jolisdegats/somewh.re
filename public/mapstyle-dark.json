@@ -1,0 +1,188 @@
+{
+  "bearing": 0.0,
+  "center": [10.184401828277087, -1.1368683772161605e-13],
+  "glyphs": "https://tiles.stadiamaps.com/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": { "background-color": "#0E172B" }
+    },
+    {
+      "id": "park_fill",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "park",
+      "filter": ["==", "$type", "Polygon"],
+      "layout": { "visibility": "visible" },
+      "paint": { "fill-color": "#1B2942" }
+    },
+    {
+      "id": "landcover_ice_shelf",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "maxzoom": 8,
+      "filter": ["all", ["==", "$type", "Polygon"], ["==", "subclass", "ice_shelf"]],
+      "layout": { "visibility": "visible" },
+      "paint": { "fill-color": "#1B2942", "fill-opacity": 0.7 }
+    },
+    {
+      "id": "landcover_glacier",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "maxzoom": 8,
+      "filter": ["all", ["==", "$type", "Polygon"], ["==", "subclass", "glacier"]],
+      "layout": { "visibility": "visible" },
+      "paint": {
+        "fill-color": "#1B2942",
+        "fill-opacity": {
+          "base": 1,
+          "stops": [
+            [0, 1],
+            [8, 0.5]
+          ]
+        }
+      }
+    },
+    {
+      "id": "landcover_wood",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "minzoom": 10,
+      "filter": ["all", ["==", "$type", "Polygon"], ["==", "class", "wood"]],
+      "layout": { "visibility": "visible" },
+      "paint": {
+        "fill-color": "#1B2942",
+        "fill-opacity": {
+          "base": 1,
+          "stops": [
+            [8, 0],
+            [12, 1]
+          ]
+        }
+      }
+    },
+    {
+      "id": "landcover_park",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "minzoom": 10,
+      "filter": ["all", ["==", "$type", "Polygon"], ["==", "subclass", "park"]],
+      "layout": { "visibility": "visible" },
+      "paint": {
+        "fill-color": "#1B2942",
+        "fill-opacity": {
+          "base": 1,
+          "stops": [
+            [8, 0],
+            [12, 0.8]
+          ]
+        }
+      }
+    },
+    {
+      "id": "boundary_country",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "boundary",
+      "filter": ["==", "admin_level", 2],
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "paint": {
+        "line-color": "#2D3B54",
+        "line-width": {
+          "base": 1.1,
+          "stops": [
+            [3, 1],
+            [22, 20]
+          ]
+        },
+        "line-blur": {
+          "base": 1,
+          "stops": [
+            [0, 0.4],
+            [22, 4]
+          ]
+        },
+        "line-opacity": 1
+      }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "raster-opacity": 0,
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "filter": ["==", "$type", "Polygon"],
+      "layout": { "visibility": "visible" },
+      "paint": { "fill-color": "#1E293B", "fill-antialias": true }
+    },
+    {
+      "id": "place_country",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "place",
+      "minzoom": 2,
+      "maxzoom": 10,
+      "filter": [
+        "all",
+        ["==", "$type", "Point"],
+        ["all", ["<=", "rank", 3], ["==", "class", "country"]]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "text-field": [
+          "concat",
+          ["get", "name:latin"],
+          [
+            "case",
+            ["all", ["has", "name:nonlatin"], ["is-supported-script", ["get", "name:nonlatin"]]],
+            ["concat", "\n", ["get", "name:nonlatin"]],
+            ""
+          ]
+        ],
+        "text-line-height": 1.55,
+        "text-font": ["Stadia Semibold"],
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0.05,
+        "symbol-avoid-edges": true,
+        "text-size": {
+          "base": 1.4,
+          "stops": [
+            [0, 12],
+            [6, 16],
+            [9, 24]
+          ]
+        },
+        "text-anchor": "center"
+      },
+      "paint": {
+        "text-halo-width": 1.4,
+        "text-halo-color": "rgba(14, 23, 43, 0.7)",
+        "text-color": {
+          "base": 1,
+          "stops": [
+            [3, "#64748B"],
+            [4, "#94A3B8"]
+          ]
+        }
+      }
+    }
+  ],
+  "metadata": { "mapbox:autocomposite": false, "openmaptiles:version": "3.x" },
+  "name": "Alidade Dark",
+  "pitch": 0.0,
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "scheme": "xyz",
+      "url": "https://tiles.stadiamaps.com/data/openmaptiles.json"
+    }
+  },
+  "sprite": "https://tiles.stadiamaps.com/styles/alidade-smooth/sprite",
+  "version": 8,
+  "zoom": 0.89026415
+}

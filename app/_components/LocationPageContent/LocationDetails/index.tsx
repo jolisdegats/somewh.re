@@ -28,7 +28,7 @@ const LocationDetails = ({
         <h2 className="font-display text-4xl font-black tracking-wider mb-6 mt-4">
           {detail.category}
         </h2>
-        <p className="text-gray-600 text-balance">{detail.description}</p>
+        <p className="text-gray-600 dark:text-gray-300 text-balance">{detail.description}</p>
       </div>
     </div>
   ));

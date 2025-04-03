@@ -10,8 +10,8 @@ const LocationAccessibility = ({
   averageTemp: string;
 }) => {
   return (
-    <div className="pt-24 pb-24 gap-16 text-center">
-      <div className="grid grid-cols-4 gap-16 border-y border-gray-200 py-8 px-18">
+    <div className="pt-24 gap-16 text-center">
+      <div className="grid grid-cols-4 gap-16 border-y border-gray-200 dark:border-gray-700 py-8 px-18">
         {/* <div className="col-span-1 relative">
           <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">
             Best time to visit
@@ -19,20 +19,20 @@ const LocationAccessibility = ({
           <p className="text-gray-600 uppercase">{bestTimeToVisit.join(', ')}</p>
         </div> */}
         <div className="col-span-1 relative">
-          <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">Languages</h2>
-          <p className="text-gray-600 uppercase">{languages.join(', ')}</p>
+          <h2 className="font-display text-2xl font-black tracking-wider mb-6">Languages</h2>
+          <p className="text-gray-600 dark:text-gray-300 uppercase">{languages.join(', ')}</p>
         </div>
         <div className="col-span-1 relative">
-          <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">Religions</h2>
-          <p className="text-gray-600 uppercase">{religions.join(', ')}</p>
+          <h2 className="font-display text-2xl font-black tracking-wider mb-6 ">Religions</h2>
+          <p className="text-gray-600 dark:text-gray-300 uppercase">{religions.join(', ')}</p>
         </div>
         <div className="col-span-1 relative">
-          <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">Currency</h2>
-          <p className="text-gray-600 uppercase">{currency}</p>
+          <h2 className="font-display text-2xl font-black tracking-wider mb-6">Currency</h2>
+          <p className="text-gray-600 dark:text-gray-300 uppercase">{currency}</p>
         </div>
         <div className="col-span-1 relative">
-          <h2 className="font-display text-2xl font-black tracking-wider mb-6 mt-4">Climate</h2>
-          <p className="text-gray-600 uppercase">{averageTemp}</p>
+          <h2 className="font-display text-2xl font-black tracking-wider mb-6">Climate</h2>
+          <p className="text-gray-600 dark:text-gray-300 uppercase">{averageTemp}</p>
         </div>
       </div>
     </div>

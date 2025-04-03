@@ -3,10 +3,11 @@ import { Layer, Map, MapRef, Marker, Source } from '@vis.gl/react-maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import mapStyle from '@/public/mapstyle.json';
+import mapStyleDark from '@/public/mapstyle-dark.json';
 import { StyleSpecification } from 'maplibre-gl';
 import { useIsVisible } from '@/app/_hooks/useIsVisible';
 import Button from '@/app/_components/Library/Button';
-
+import useIsDarkMode from '@/app/_hooks/useIsDarkMode';
 const mapSize = 340;
 const mapSizeWithPadding = mapSize + 14;
 
@@ -19,6 +20,7 @@ export default function LocationMap({
   longitude: number;
   geojson?: GeoJSON.FeatureCollection;
 }) {
+  const isDarkMode = useIsDarkMode();
   const [countryLayerOpacity, setCountryLayerOpacity] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeout = useRef<NodeJS.Timeout>(null);
@@ -70,15 +72,15 @@ export default function LocationMap({
   return (
     <div className="col-span-4 pr-18">
       <div className="relative flex flex-col items-center justify-center">
-        <span className="font-display text-4xl font-bold px-6 bg-white">N</span>
-        <span className="border-l-2 border-black h-6 w-1 mb-2" />
+        <span className="font-display text-4xl font-bold px-6">N</span>
+        <span className="border-l-2 border-black dark:border-gray-200 h-6 w-1 mb-2" />
         <div
           style={{
             pointerEvents: isScrolling ? 'none' : 'auto',
             width: `${mapSizeWithPadding}px`,
             height: `${mapSizeWithPadding}px`,
           }}
-          className={`flex items-center justify-center bg-[#0E172B] circle-clip relative`}
+          className={`flex items-center justify-center bg-[#0E172B] dark:bg-gray-200 circle-clip relative`}
         >
           <div
             ref={mapContainer}
@@ -108,13 +110,9 @@ export default function LocationMap({
                 zoom: 1.5,
               }}
               style={{ width: mapSize, height: mapSize }}
-              mapStyle={mapStyle as StyleSpecification}
-              // scrollZoom={!isScrolling}
-              // dragPan={!isScrolling}
-              // dragRotate={!isScrolling}
-              // touchPitch={!isScrolling}
-              // keyboard={!isScrolling}
-              // doubleClickZoom={!isScrolling}
+              mapStyle={
+                isDarkMode ? (mapStyleDark as StyleSpecification) : (mapStyle as StyleSpecification)
+              }
             >
               {geojson && (
                 <Source type="geojson" data={geojson}>
@@ -127,15 +125,15 @@ export default function LocationMap({
                       'fill-sort-key': ['get', 'rank'],
                     }}
                     paint={{
-                      'fill-color': '#0E172B',
+                      'fill-color': isDarkMode ? '#9CA2A7' : '#0E172B',
                       'fill-opacity': countryLayerOpacity,
-                      'fill-outline-color': '#9CA2A7',
+                      'fill-outline-color': isDarkMode ? '#0E172B' : '#9CA2A7',
                     }}
                   />
                 </Source>
               )}
               <Marker latitude={latitude} longitude={longitude}>
-                <div className="bg-[#0E172B] w-2 h-2 rounded-full" />
+                <div className="bg-[#0E172B] dark:bg-white w-2 h-2 rounded-full" />
               </Marker>
             </Map>
           </div>
@@ -148,11 +146,14 @@ export default function LocationMap({
           onClick={() => {
             flyToLocation({ map: map.current, speed: 0.5 });
           }}
-          className="font-medium text-gray-600 mt-4 enabled:hover:opacity-50"
+          className="font-medium text-gray-600 dark:text-white mt-4 enabled:hover:opacity-50"
         >
-          <span className="font-display text-slate-900 text-lg font-bold">N</span>{' '}
+          <span className="font-display text-slate-900 dark:text-white text-lg font-bold">N</span>{' '}
           {latitude.toFixed(4)}
-          °, <span className="font-display text-slate-900 text-lg font-bold">E</span>{' '}
+          °,{' '}
+          <span className="font-display text-slate-900 dark:text-white text-lg font-bold">
+            E
+          </span>{' '}
           {longitude.toFixed(4)}°
         </Button>
       </div>

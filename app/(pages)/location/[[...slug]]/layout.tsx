@@ -12,7 +12,6 @@ const LocationLayout = async ({
 }) => {
   const { slug } = await params;
   const location = getLocationBySlugOrLatest(slug[0]);
-  console.log('LocationLayout', location);
   return (
     <LayoutWithHeader headerChildren={<LocationHeader location={location} />}>
       {children}

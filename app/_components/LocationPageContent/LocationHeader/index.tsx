@@ -56,7 +56,7 @@ const LocationHeader = ({ location }: { location: Location }) => {
   const VolumeIcon = volume === 0 ? VolumeOff : volume > 50 ? Volume2 : Volume1;
 
   return (
-    <div className="w-full flex items-center justify-end">
+    <div className="h-full w-full flex items-center justify-end  mr-2">
       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <audio
           ref={audioRef}
@@ -66,10 +66,10 @@ const LocationHeader = ({ location }: { location: Location }) => {
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
         />
-        <Button className="flex p-2">
+        <Button className="flex">
           <div
             className={`
-                mr-2
+              mr-2
               overflow-hidden
               transition-[width]
               duration-200
@@ -77,11 +77,11 @@ const LocationHeader = ({ location }: { location: Location }) => {
               ${showVolume ? 'w-[80px]' : 'w-0'}
             `}
           >
-            <div className="mr-2 w-full">
-              <Slider value={volume} onChange={handleVolumeChange} min={0} max={100} step={1} />
-            </div>
+            <Slider value={volume} onChange={handleVolumeChange} min={0} max={100} step={1} />
           </div>
-          <VolumeIcon size={24} onClick={toggleVolume} />
+          <div className="flex items-center justify-center">
+            <VolumeIcon size={20} onClick={toggleVolume} />
+          </div>
         </Button>
       </div>
     </div>

@@ -10,7 +10,7 @@ const LocationGallery = ({
 }) => {
   return (
     <>
-      <div className="grid grid-cols-12 gap-16 overflow-hidden">
+      <div className="pt-24 grid grid-cols-12 gap-16 overflow-hidden">
         {gallery.map(image => (
           <div key={image.url} className="col-span-6 relative h-70">
             <Image src={image.url} alt={`${locationName} ${image.credit.name}`} />
@@ -18,8 +18,8 @@ const LocationGallery = ({
         ))}
       </div>
 
-      <div className="pt-24 ">
-        <div className="border-b border-gray-200" />
+      <div className="px-24 pt-24 ">
+        <div className="border-b border-gray-200 dark:border-none" />
       </div>
     </>
   );

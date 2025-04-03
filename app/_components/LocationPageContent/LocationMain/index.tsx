@@ -24,7 +24,7 @@ const LocationMain = ({
     <div className="grid grid-cols-12 min-h-screen">
       <div className="col-span-6 p-16 flex flex-col justify-end">
         <div className="max-w-2xl">
-          <div className="text-sm uppercase tracking-wider text-gray-500">
+          <div className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400">
             {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             <br />
           </div>
@@ -34,20 +34,28 @@ const LocationMain = ({
 
           <div className="grid grid-cols-4 gap-8 mb-12 text-sm">
             <div>
-              <small className="text-gray-500 uppercase tracking-wider mb-1">Continent</small>
-              <p className="font-medium text-gray-600">{continent}</p>
+              <small className="text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                Continent
+              </small>
+              <p className="font-medium text-gray-600 dark:text-gray-300">{continent}</p>
             </div>
             <div>
-              <small className="text-gray-500 uppercase tracking-wider mb-1">Country</small>
-              <p className="font-medium text-gray-600">{country}</p>
+              <small className="text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                Country
+              </small>
+              <p className="font-medium text-gray-600 dark:text-gray-300">{country}</p>
             </div>
             <div>
-              <small className="text-gray-500 uppercase tracking-wider mb-1">Region</small>
-              <p className="font-medium text-gray-600">{region}</p>
+              <small className="text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                Region
+              </small>
+              <p className="font-medium text-gray-600 dark:text-gray-300">{region}</p>
             </div>
           </div>
 
-          <p className="text-xl leading-relaxed text-gray-600 mb-12 text-balance">{description}</p>
+          <p className="text-xl leading-relaxed text-gray-600 dark:text-gray-300 mb-12 text-balance">
+            {description}
+          </p>
         </div>
       </div>
       <div className="col-span-6 relative">

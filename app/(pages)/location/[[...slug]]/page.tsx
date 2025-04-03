@@ -16,10 +16,8 @@ export interface LocationPageParams {
 
 const LocationPage = async ({ params }: { params: Promise<LocationPageParams> }) => {
   const { slug } = await params;
-  console.log('LocationPage', slug[0]);
   const location = getLocationBySlugOrLatest(slug[0]);
 
-  console.log('LocationPage', location);
   if (!location) {
     return <div>Location not found</div>;
   }
