@@ -1,3 +1,11 @@
+interface Image {
+  url: string;
+  imagePosition: string;
+  credit: {
+    name: string;
+    url: string;
+  };
+}
 export interface Location {
   id: string;
   name: string;
@@ -11,10 +19,7 @@ export interface Location {
   country: string;
   continent: string;
   region: string;
-  mainImage: {
-    url: string;
-    imagePosition?: string;
-  };
+  mainImage: Image;
   instagramTag?: string;
   bestTimeToVisit: string[];
   averageTemp: string;
@@ -26,15 +31,20 @@ export interface Location {
   details?: {
     category: string;
     description: string;
-    image: string;
-    imagePosition?: string;
+    image: Image;
+  }[];
+  gallery?: Image[];
+  keyDates: {
+    year: number;
+    title: string;
+    description?: string;
   }[];
 }
 
 export const SAMPLE_LOCATIONS: Location[] = [
   {
-    id: new Date('2025-03-29').getTime().toString(),
-    date: new Date('2025-03-29'),
+    id: '1',
+    date: new Date('2025-03-30'),
     name: 'Socotra Island',
     description:
       'Often called the most alien-looking place on Earth, Socotra is home to plants and trees found nowhere else on the planet. The iconic Dragon Blood Trees and bottle-shaped Desert Roses create an otherworldly landscape that seems straight out of a science fiction movie.',
@@ -1133,6 +1143,11 @@ export const SAMPLE_LOCATIONS: Location[] = [
     continent: 'Asia',
     mainImage: {
       url: 'https://images.unsplash.com/photo-1642425150068-422fef94a8ea',
+      imagePosition: 'object-[50%_50%]',
+      credit: {
+        name: 'Andrew Svk',
+        url: 'https://unsplash.com/fr/photos/un-arbre-etrange-au-milieu-dune-zone-rocheuse-siq3xkHUhSg',
+      },
     },
     instagramTag: 'socotra',
     bestTimeToVisit: ['October', 'November', 'December', 'January'],
@@ -1146,38 +1161,122 @@ export const SAMPLE_LOCATIONS: Location[] = [
         category: 'Biodiversity',
         description:
           "Socotra is home to over 700 endemic species, many of which exist nowhere else on Earth. The island's isolation has allowed evolution to take a unique path, resulting in surreal flora like the Dragon Blood Tree, with its crimson resin and umbrella-like canopy, and the swollen Desert Rose. These species thrive in microclimates created by the island’s rugged terrain and monsoon winds.",
-        image: 'https://live.staticflickr.com/65535/49788618867_1cf0d15686_b.jpg',
-        // 'https://magazine.hortus-focus.fr/wp-content/uploads/sites/2/2018/10/adenium-obesum-rose-du-desert-zanskar.jpg',
-        imagePosition: 'object-[50%_70%]',
+        image: {
+          url: 'https://live.staticflickr.com/65535/49788618867_1cf0d15686_b.jpg',
+          imagePosition: 'object-[50%_70%]',
+          credit: {
+            name: 'Valerian Guillot',
+            url: 'https://flic.kr/p/2iRDFMe',
+          },
+        },
       },
-
-      // {
-      //   category: 'Geology',
-      //   description:
-      //     "Socotra lies on its own continental fragment, separated from mainland Africa and the Arabian Peninsula millions of years ago. Its dramatic limestone plateaus, karst caves, and coastal cliffs are shaped by ancient tectonic activity and erosion. These geological features create isolated habitats and contribute to the island's surreal landscape.",
-      //   image: 'https://images.unsplash.com/photo-1642425146609-6c8ff4589d18',
-      // },
-      // {
-      //   category: 'Culture',
-      //   description:
-      //     'The people of Socotra, known as the Soqotri, speak a unique unwritten language and maintain a traditional way of life rooted in fishing, herding, and date cultivation. Oral storytelling, poetry, and herbal medicine are important parts of the island’s cultural heritage, shaped by centuries of isolation and adaptation to a harsh environment.',
-      //   image: 'https://images.unsplash.com/photo-1642425145481-d59fbcfde153',
-      // },
       {
         category: 'Language',
         description:
           'The indigenous people of Socotra speak Soqotri, a unique and ancient Semitic language that exists nowhere else on Earth. Traditionally, Soqotri was solely an oral language, rich in poetry and storytelling. Efforts are underway to develop a written script to document its vast oral literature and ensure its preservation for future generations.',
-        image: 'https://images.unsplash.com/photo-1642425145481-d59fbcfde153',
-        imagePosition: 'object-[100%_30%]',
+        image: {
+          url: 'https://images.unsplash.com/photo-1642425145481-d59fbcfde153',
+          imagePosition: 'object-[100%_30%]',
+          credit: {
+            name: 'Andrew Svk',
+            url: 'https://unsplash.com/fr/photos/une-femme-en-robe-coloree-debout-dans-une-zone-rocheuse-hgZRvh6bjMs',
+          },
+        },
       },
     ],
-    // 'https://images.unsplash.com/photo-1642425149790-6067ff132526',
-    // 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Dragon%27s_Blood_Tree%2C_Socotra_Is_%2812473612124%29.jpg/1600px-Dragon%27s_Blood_Tree%2C_Socotra_Is_%2812473612124%29.jpg?20140603062846',
-    //     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wadi%2C_Socotra_Island_%2810941888296%29.jpg/1600px-Wadi%2C_Socotra_Island_%2810941888296%29.jpg',
+    keyDates: [
+      {
+        year: 100,
+        title: 'Mention in the Periplus of the Erythraean Sea',
+        description:
+          'Greek-Roman sailors describe Socotra as a vital maritime hub, known for its aloe, resins, and strategic location between Arabia, India, and Africa.',
+      },
+      {
+        year: 400,
+        title: 'Spread of Christianity',
+        description:
+          'Christianity arrives via Nestorian missionaries. Ancient monastery ruins and traveler accounts suggest a strong Christian presence until the 10th century.',
+      },
+      {
+        year: 1507,
+        title: 'Portuguese Occupation',
+        description:
+          'The Portuguese briefly seize Socotra to control access to the Red Sea, but abandon the island by 1511 due to poor conditions and isolation.',
+      },
+      {
+        year: 1511,
+        title: 'Return to Mahra Rule',
+        description:
+          'After the Portuguese withdraw, the Mahra Sultanate of mainland Yemen reasserts control. Socotra remains under Mahri influence for centuries.',
+      },
+      {
+        year: 1834,
+        title: 'British East India Company Expedition',
+        description:
+          'The British briefly occupy the island, considering it for a coaling station, but abandon the plan due to lack of freshwater and difficult terrain.',
+      },
+      {
+        year: 1876,
+        title: 'British Protectorate via Mahra Sultanate',
+        description:
+          'Socotra becomes part of the Aden Protectorate through a treaty with the Mahra Sultanate. It remains under indirect British control until 1967.',
+      },
+      {
+        year: 1967,
+        title: 'Integration into South Yemen',
+        description:
+          'With the fall of the Mahra Sultanate and British withdrawal from the region, Socotra becomes part of the socialist People’s Democratic Republic of Yemen.',
+      },
+      {
+        year: 1990,
+        title: 'Yemeni Unification',
+        description:
+          'Socotra becomes part of the Republic of Yemen following the unification of North and South Yemen.',
+      },
+      {
+        year: 2008,
+        title: 'UNESCO Biosphere Reserve Status',
+        description:
+          'Recognized for its unique biodiversity and high level of endemism, Socotra is designated a UNESCO Man and Biosphere Reserve.',
+      },
+      {
+        year: 2018,
+        title: 'UAE Military Presence and Tensions',
+        description:
+          'The United Arab Emirates deploys troops to Socotra during the Yemeni Civil War, prompting local and international concerns about sovereignty and environmental preservation.',
+      },
+    ],
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1642425149790-6067ff132526',
+        imagePosition: 'object-[50%_70%]',
+        credit: {
+          name: 'Andrew Svk',
+          url: 'https://unsplash.com/fr/photos/un-groupe-darbres-au-milieu-dune-foret-nQvFebPtqbw',
+        },
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Dragon%27s_Blood_Tree%2C_Socotra_Is_%2812473612124%29.jpg/1600px-Dragon%27s_Blood_Tree%2C_Socotra_Is_%2812473612124%29.jpg?20140603062846',
+        imagePosition: 'object-[50%_70%]',
+        credit: {
+          name: '',
+          url: '',
+        },
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wadi%2C_Socotra_Island_%2810941888296%29.jpg/1600px-Wadi%2C_Socotra_Island_%2810941888296%29.jpg',
+        imagePosition: 'object-[50%_70%]',
+        credit: {
+          name: '',
+          url: '',
+        },
+      },
+    ],
   },
   {
-    id: new Date('2025-03-30').getTime().toString(),
-    date: new Date('2025-03-30'),
+    id: '2',
+    // date: new Date('2025-04-01'),
+    date: new Date(),
     name: 'Danakil Desert',
     description:
       'One of the hottest, driest, and most alien landscapes on Earth, the Danakil Desert in northeastern Ethiopia is a geological wonderland. With acidic hot springs, neon-colored sulfur fields, and active volcanoes like Erta Ale, the region feels like another planet.',
@@ -1190,8 +1289,11 @@ export const SAMPLE_LOCATIONS: Location[] = [
     continent: 'Africa',
     region: 'Afar Region',
     mainImage: {
+      credit: {
+        name: 'Thomas Fuhrmann',
+        url: 'https://commons.wikimedia.org/wiki/File:Ethiopia_-_Dallol.jpg',
+      },
       url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Ethiopia_-_Dallol.jpg/1920px-Ethiopia_-_Dallol.jpg',
-      // url: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/ET_Afar_asv2018-01_img48_Dallol.jpg',
       imagePosition: 'object-[65%_50%]',
     },
     instagramTag: 'danakildesert',
@@ -1201,22 +1303,49 @@ export const SAMPLE_LOCATIONS: Location[] = [
     type: ['nature'],
     religions: ['Islam', 'Christianity'],
     languages: ['Afar', 'Amharic'],
+    keyDates: [
+      {
+        year: 1000,
+        title: '',
+        description: '',
+      },
+    ],
     details: [
       {
         category: 'Geology',
         description:
           'The Danakil Depression lies at the junction of three tectonic plates and is one of the most geologically active areas on the planet. The Dallol hydrothermal field paints the desert with neon greens, yellows, and reds due to mineral-rich acidic pools. Nearby, Erta Ale, one of only a few continuously active lava lakes, offers a fiery spectacle under the night sky.',
-        // image: 'https://images.unsplash.com/photo-1516533075015-a3838414c3ca',
-        image:
-          'https://upload.wikimedia.org/wikipedia/commons/d/d4/ET_Afar_asv2018-01_img48_Dallol.jpg',
-        imagePosition: 'object-[50%_70%]',
+        image: {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/ET_Afar_asv2018-01_img48_Dallol.jpg',
+          imagePosition: 'object-[50%_70%]',
+          credit: {
+            name: 'Alexander Savin',
+            url: 'https://commons.wikimedia.org/wiki/File:ET_Afar_asv2018-01_img48_Dallol.jpg',
+          },
+        },
       },
       {
         category: 'Culture',
         description:
           'The Afar people have lived in this hostile environment for centuries, traditionally harvesting salt from the desert’s vast salt flats. Camel caravans, once a vital part of their economy, still traverse the white plains. Their culture is marked by resilience, oral storytelling, and a deep understanding of the desert’s natural rhythms.',
-        image: 'https://live.staticflickr.com/4841/46084835254_825ffbf045_b.jpg',
-        imagePosition: 'object-[50%_0%]',
+        image: {
+          url: 'https://live.staticflickr.com/4841/46084835254_825ffbf045_b.jpg',
+          imagePosition: 'object-[50%_0%]',
+          credit: {
+            name: 'Gustavo Jeronimo',
+            url: 'https://flic.kr/p/2ddmPX5',
+          },
+        },
+      },
+    ],
+    gallery: [
+      {
+        url: 'https://images.unsplash.com/photo-1516533075015-a3838414c3ca',
+        credit: {
+          name: '',
+          url: '',
+        },
+        imagePosition: 'object-[50%_70%]',
       },
     ],
   },

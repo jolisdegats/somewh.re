@@ -1,3 +1,5 @@
+'use client';
+
 import Sticky from 'react-stickynode';
 
 const StickyLocationName = ({ locationName }: { locationName: string }) => {

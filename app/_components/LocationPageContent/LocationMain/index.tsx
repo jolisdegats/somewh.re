@@ -1,7 +1,6 @@
 import Image from '@/app/_components/Library/Image';
 
 const LocationMain = ({
-  //   type,
   name,
   country,
   region,
@@ -28,7 +27,6 @@ const LocationMain = ({
           <div className="text-sm uppercase tracking-wider text-gray-500">
             {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             <br />
-            {/* {type.join(' • ')} */}
           </div>
           <div className="space-y-2 mb-4 mt-2">
             <h1 className="font-display text-8xl">{name}</h1>
@@ -53,7 +51,13 @@ const LocationMain = ({
         </div>
       </div>
       <div className="col-span-6 relative">
-        <Image src={mainImageUrl} alt={name} imagePosition={mainImagePosition} sizes="50vw" />
+        <Image
+          priority
+          src={mainImageUrl}
+          alt={name}
+          imagePosition={mainImagePosition}
+          sizes="50vw"
+        />
       </div>
     </div>
   );

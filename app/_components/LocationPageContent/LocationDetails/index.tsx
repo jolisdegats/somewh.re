@@ -15,9 +15,9 @@ const LocationDetails = ({
           {detail.image && (
             <div className="h-[250px] w-full overflow-hidden relative">
               <Image
-                src={detail.image}
+                src={detail.image.url}
                 alt={`${locationName} ${detail.category} 1`}
-                imagePosition={detail.imagePosition}
+                imagePosition={detail.image.imagePosition}
                 sizes="50vw"
               />
             </div>

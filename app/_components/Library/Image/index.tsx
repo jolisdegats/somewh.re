@@ -1,6 +1,8 @@
+'use client';
 import NextImage from 'next/image';
 
 const Image = ({
+  priority,
   src,
   alt,
   className,
@@ -12,6 +14,7 @@ const Image = ({
   sizes,
   imageFill = 'object-cover',
 }: {
+  priority?: boolean;
   src: string;
   alt: string;
   className?: string;
@@ -31,9 +34,10 @@ const Image = ({
       width={width}
       height={height}
       sizes={sizes}
+      priority={priority}
       draggable={false}
       className={`${
-        !disableSmoothLoading && 'transition-opacity opacity-0 duration-[2s]'
+        !disableSmoothLoading && 'transition-opacity opacity-0 duration-[1s]'
       } ${imageFill} ${imagePosition} ${className}`}
       onLoad={e => {
         (e.target as HTMLElement).classList.remove('opacity-0');
