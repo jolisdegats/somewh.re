@@ -2,9 +2,9 @@
 
 import { useWindowScroll } from '@uidotdev/usehooks';
 import { Menu } from 'lucide-react';
-
-const Header = () => {
+const Header = ({ children }: { children: React.ReactNode }) => {
   const [{ y }] = useWindowScroll();
+
   return (
     <header
       id="header"
@@ -16,6 +16,7 @@ const Header = () => {
       <div className="max-w-[1920px] mx-auto px-8 py-3">
         <nav className="flex items-center justify-between">
           <h1 className="font-display text-2xl">Somewhe.re</h1>
+          {children}
           <button className="p-2">
             <Menu size={24} />
           </button>

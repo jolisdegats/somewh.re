@@ -1,6 +1,6 @@
 const Button = ({
   children,
-  className,
+  className = '',
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (

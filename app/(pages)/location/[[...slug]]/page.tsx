@@ -1,5 +1,4 @@
 import React from 'react';
-import { SAMPLE_LOCATIONS } from '@/app/types';
 import LocationMain from '@/app/_components/LocationPageContent/LocationMain';
 import LocationDetails from '@/app/_components/LocationPageContent/LocationDetails';
 import LocationAccessibility from '@/app/_components/LocationPageContent/LocationAccessibility';
@@ -9,18 +8,18 @@ import Pagination from '@/app/_components/LocationPageContent/LocationPagination
 import LocationGallery from '@/app/_components/LocationPageContent/LocationGallery';
 import LocationCredits from '@/app/_components/LocationPageContent/LocationCredits';
 import LocationKeyDates from '@/app/_components/LocationPageContent/LocationKeyDates';
-// import LocationKeyDates from '@/app/_components/LocationPageContent/LocationKeyDates';
+import { getLocationBySlugOrLatest } from './_utils';
 
-interface LocationPageParams {
-  id: string;
+export interface LocationPageParams {
+  slug: string;
 }
 
 const LocationPage = async ({ params }: { params: Promise<LocationPageParams> }) => {
-  const { id } = await params;
-  const location = id
-    ? SAMPLE_LOCATIONS.find(location => location.id === String(id))
-    : SAMPLE_LOCATIONS[SAMPLE_LOCATIONS.length - 1];
+  const { slug } = await params;
+  console.log('LocationPage', slug[0]);
+  const location = getLocationBySlugOrLatest(slug[0]);
 
+  console.log('LocationPage', location);
   if (!location) {
     return <div>Location not found</div>;
   }
@@ -76,7 +75,7 @@ const LocationPage = async ({ params }: { params: Promise<LocationPageParams> })
             languages={location.languages}
             religions={location.religions}
           /> */}
-          <div className="flex justify-between">
+          <div className="grid grid-cols-12">
             <LocationKeyDates keyDates={location.keyDates} />
             <LocationMap
               geojson={location.geojson}
@@ -85,17 +84,18 @@ const LocationPage = async ({ params }: { params: Promise<LocationPageParams> })
             />
           </div>
           <LocationAccessibility
-            bestTimeToVisit={location.bestTimeToVisit}
             averageTemp={location.averageTemp}
+            currency={location.currency}
             languages={location.languages}
             religions={location.religions}
           />
-          {!!location.gallery?.length && (
-            <LocationGallery gallery={location.gallery} locationName={location.name} />
-          )}
         </div>
         <div className="col-span-2 relative" />
       </div>
+
+      {!!location.gallery?.length && (
+        <LocationGallery gallery={location.gallery} locationName={location.name} />
+      )}
       <LocationCredits location={location} />
     </div>
   );

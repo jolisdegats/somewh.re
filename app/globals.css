@@ -5,6 +5,7 @@
   html {
     font-family: 'Inter', sans-serif;
     @apply text-slate-900;
+    font-size: 14px;
   }
 
   .font-display {

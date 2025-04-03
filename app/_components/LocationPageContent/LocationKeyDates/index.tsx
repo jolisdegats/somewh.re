@@ -1,69 +1,38 @@
 'use client';
-// import { useState } from 'react';
-// import Button from '@/app/_components/Library/Button';
-import { Calendar } from 'lucide-react';
-import { MapPin } from 'lucide-react';
-import { Compass } from 'lucide-react';
-
-const LocationKeyDates = () => {
-  //   const [showAllDates, setShowAllDates] = useState(false);
+import { useState } from 'react';
+import Button from '@/app/_components/Library/Button';
+const LocationKeyDates = ({
+  keyDates,
+}: {
+  keyDates: { year: number; title: string; description?: string }[];
+}) => {
+  const [activeDate, setActiveDate] = useState(0);
   return (
-    <div className="flex items-center gap-8 text-sm">
-      <div className="flex items-center gap-2">
-        <Calendar size={18} className="text-gray-400" />
-        <span>XXX</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <MapPin size={18} className="text-gray-400" />
-        <span>XXX</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <Compass size={18} className="text-gray-400" />
-        <span className="capitalize">XXX</span>
+    <div className="col-span-8 pl-18 pr-36 pt-24">
+      <div className="space-y-8">
+        <h2 className="font-display text-4xl font-black tracking-wider mb-6 mt-4">Key Dates</h2>
+        <div className="relative">
+          <div className="flex gap-8 mb-2">
+            {keyDates.map((date, index) => (
+              <Button
+                key={index}
+                onClick={() => setActiveDate(index)}
+                className={`relative py-2 ${
+                  activeDate === index ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600'
+                }`}
+              >
+                <span className="font-display text-2xl">{date.year}</span>
+              </Button>
+            ))}
+          </div>
+          <div className="bg-gray-50 p-8 rounded-lg">
+            <div className="font-medium text-xl mb-3">{keyDates[activeDate].title}</div>
+            <p className="text-gray-600">{keyDates[activeDate].description}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
-  //   return (
-  //     <div id="key-dates" className="px-20 pt-2">
-  //       <h2 className="font-display text-4xl font-black tracking-wider mb-6 mt-4">Key dates</h2>
-  //       <div className={`${showAllDates ? 'h-auto' : 'h-[300px]'} overflow-hidden`}>
-  //         <div className="ml-2 transition-all duration-300 text-gray-600 text-balance border-l-2 border-gray-400 pl-4">
-  //           {keyDates.map(date => (
-  //             <div key={date.year} className="mb-4 last:mb-0">
-  //               <div className="flex flex-col gap-2">
-  //                 <div className="flex items-center gap-2 -ml-[23px]">
-  //                   <div className="w-3 h-3 bg-gray-600 rounded-full flex-shrink-0 items-center justify-center flex-grow-0" />
-  //                   <div className="flex items-center gap-2">
-  //                     <span className="font-display text-lg font-bold">{date.year}</span>|
-  //                     <h3 className="font-display text-lg font-bold">{date.title}</h3>
-  //                   </div>
-  //                 </div>
-  //                 {date.description && <p className="text-sm">{date.description}</p>}
-  //               </div>
-  //             </div>
-  //           ))}
-  //         </div>
-  //       </div>
-  //       <Button
-  //         onClick={() => {
-  //           setShowAllDates(!showAllDates);
-  //           const keyDatesElement = document.getElementById('key-dates');
-  //           if (keyDatesElement) {
-  //             const keyDatesElementPosition =
-  //               keyDatesElement.getBoundingClientRect().top + window.scrollY;
-  //             const offsetPosition = keyDatesElementPosition - 100;
-  //             window.scrollTo({
-  //               top: offsetPosition,
-  //               behavior: 'smooth',
-  //             });
-  //           }
-  //         }}
-  //         className="text-gray-500 text-2xl ml-[2px] flex-shrink-0 flex-grow-0"
-  //       >
-  //         {showAllDates ? '-' : '+'}
-  //       </Button>
-  //     </div>
-  //   );
 };
 
 export default LocationKeyDates;

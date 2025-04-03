@@ -10,9 +10,9 @@ const LocationGallery = ({
 }) => {
   return (
     <>
-      <div className="grid grid-cols-12 gap-16 h-130 ">
+      <div className="grid grid-cols-12 gap-16 overflow-hidden">
         {gallery.map(image => (
-          <div key={image.url} className="col-span-4 relative">
+          <div key={image.url} className="col-span-6 relative h-70">
             <Image src={image.url} alt={`${locationName} ${image.credit.name}`} />
           </div>
         ))}

@@ -7,45 +7,50 @@ interface Image {
   };
 }
 export interface Location {
-  id: string;
-  name: string;
-  description: string;
-  shortDescription: string;
+  accessibilityLevel: 'easy' | 'intermediate' | 'challenging';
+  averageTemp: string;
+  bestTimeToVisit: string[];
+  continent: string;
   coordinates: {
     latitude: number;
     longitude: number;
   };
-  geojson?: GeoJSON.FeatureCollection;
   country: string;
-  continent: string;
-  region: string;
-  mainImage: Image;
-  instagramTag?: string;
-  bestTimeToVisit: string[];
-  averageTemp: string;
-  accessibilityLevel: 'easy' | 'intermediate' | 'challenging';
-  type: ('nature' | 'architecture' | 'cultural' | 'historical')[];
-  religions: string[];
+  currency: string;
   date: Date;
-  languages: string[];
+  description: string;
   details?: {
     category: string;
     description: string;
     image: Image;
   }[];
   gallery?: Image[];
+  geojson?: GeoJSON.FeatureCollection;
+  id: string;
+  instagramTag?: string;
   keyDates: {
-    year: number;
-    title: string;
     description?: string;
+    title: string;
+    year: number;
   }[];
+  languages: string[];
+  mainImage: Image;
+  name: string;
+  audio: string;
+  region: string;
+  religions: string[];
+  shortDescription: string;
+  slug: string;
+  type: ('nature' | 'architecture' | 'cultural' | 'historical')[];
 }
 
 export const SAMPLE_LOCATIONS: Location[] = [
   {
     id: '1',
+    audio: '/audio/Socotra.wav',
     date: new Date('2025-03-30'),
     name: 'Socotra Island',
+    slug: 'yemen-socotra-island',
     description:
       'Often called the most alien-looking place on Earth, Socotra is home to plants and trees found nowhere else on the planet. The iconic Dragon Blood Trees and bottle-shaped Desert Roses create an otherworldly landscape that seems straight out of a science fiction movie.',
     shortDescription: 'An isolated island with unique and ancient plant species',
@@ -1151,16 +1156,17 @@ export const SAMPLE_LOCATIONS: Location[] = [
     },
     instagramTag: 'socotra',
     bestTimeToVisit: ['October', 'November', 'December', 'January'],
-    averageTemp: '25°C to 30°C',
+    averageTemp: 'Arid tropical (25-30°C)',
     accessibilityLevel: 'challenging',
     type: ['nature'],
     religions: ['Islam', 'Christianity'],
     languages: ['Soqotri', 'Arabic'],
+    currency: 'Yemeni Rial (YR)',
     details: [
       {
         category: 'Biodiversity',
         description:
-          "Socotra is home to over 700 endemic species, many of which exist nowhere else on Earth. The island's isolation has allowed evolution to take a unique path, resulting in surreal flora like the Dragon Blood Tree, with its crimson resin and umbrella-like canopy, and the swollen Desert Rose. These species thrive in microclimates created by the island’s rugged terrain and monsoon winds.",
+          "Socotra is home to over 700 endemic species, many of which exist nowhere else on Earth. The island's isolation has allowed evolution to take a unique path, resulting in surreal flora like the Dragon Blood Tree, with its crimson resin and umbrella-like canopy, and the swollen Desert Rose. These species thrive in microclimates created by the island's rugged terrain and monsoon winds.",
         image: {
           url: 'https://live.staticflickr.com/65535/49788618867_1cf0d15686_b.jpg',
           imagePosition: 'object-[50%_70%]',
@@ -1186,64 +1192,40 @@ export const SAMPLE_LOCATIONS: Location[] = [
     ],
     keyDates: [
       {
-        year: 100,
-        title: 'Mention in the Periplus of the Erythraean Sea',
+        year: 2008,
+        title: 'UNESCO World Heritage Recognition',
         description:
-          'Greek-Roman sailors describe Socotra as a vital maritime hub, known for its aloe, resins, and strategic location between Arabia, India, and Africa.',
+          'UNESCO designates Socotra as a World Heritage Site for its rich endemic biodiversity.',
       },
       {
-        year: 400,
-        title: 'Spread of Christianity',
+        year: 1967,
+        title: 'British Withdrawal',
         description:
-          'Christianity arrives via Nestorian missionaries. Ancient monastery ruins and traveler accounts suggest a strong Christian presence until the 10th century.',
+          'With British departure from Aden, Socotra becomes part of South Yemen which will become Yemen in 1990 with the unification of North and South.',
+      },
+      {
+        year: 1876,
+        title: 'British Protectorate Status',
+        description:
+          'A treaty places Socotra under indirect British control through the Mahra Sultanate.',
       },
       {
         year: 1507,
         title: 'Portuguese Occupation',
         description:
-          'The Portuguese briefly seize Socotra to control access to the Red Sea, but abandon the island by 1511 due to poor conditions and isolation.',
+          'Portugal occupies Socotra to control Red Sea trade but abandons it by 1511 due to harsh conditions.',
       },
       {
-        year: 1511,
-        title: 'Return to Mahra Rule',
+        year: 400,
+        title: 'Christian Missionary Presence',
         description:
-          'After the Portuguese withdraw, the Mahra Sultanate of mainland Yemen reasserts control. Socotra remains under Mahri influence for centuries.',
+          'Nestorian missionaries establish a Christian presence, leaving behind monastic ruins and inscriptions.',
       },
       {
-        year: 1834,
-        title: 'British East India Company Expedition',
+        year: 100,
+        title: 'Mention in Ancient Trade Routes',
         description:
-          'The British briefly occupy the island, considering it for a coaling station, but abandon the plan due to lack of freshwater and difficult terrain.',
-      },
-      {
-        year: 1876,
-        title: 'British Protectorate via Mahra Sultanate',
-        description:
-          'Socotra becomes part of the Aden Protectorate through a treaty with the Mahra Sultanate. It remains under indirect British control until 1967.',
-      },
-      {
-        year: 1967,
-        title: 'Integration into South Yemen',
-        description:
-          'With the fall of the Mahra Sultanate and British withdrawal from the region, Socotra becomes part of the socialist People’s Democratic Republic of Yemen.',
-      },
-      {
-        year: 1990,
-        title: 'Yemeni Unification',
-        description:
-          'Socotra becomes part of the Republic of Yemen following the unification of North and South Yemen.',
-      },
-      {
-        year: 2008,
-        title: 'UNESCO Biosphere Reserve Status',
-        description:
-          'Recognized for its unique biodiversity and high level of endemism, Socotra is designated a UNESCO Man and Biosphere Reserve.',
-      },
-      {
-        year: 2018,
-        title: 'UAE Military Presence and Tensions',
-        description:
-          'The United Arab Emirates deploys troops to Socotra during the Yemeni Civil War, prompting local and international concerns about sovereignty and environmental preservation.',
+          'Socotra appears in the Periplus of the Erythraean Sea as a vital maritime hub for aloe and resins.',
       },
     ],
     gallery: [
@@ -1275,6 +1257,8 @@ export const SAMPLE_LOCATIONS: Location[] = [
   },
   {
     id: '2',
+    slug: 'ethiopia-danakil-desert',
+    audio: '/audio/Danakil.wav',
     // date: new Date('2025-04-01'),
     date: new Date(),
     name: 'Danakil Desert',
@@ -1287,6 +1271,7 @@ export const SAMPLE_LOCATIONS: Location[] = [
     },
     country: 'Ethiopia',
     continent: 'Africa',
+    currency: 'Ethiopian Birr (ETB)',
     region: 'Afar Region',
     mainImage: {
       credit: {
