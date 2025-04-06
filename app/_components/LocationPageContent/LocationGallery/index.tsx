@@ -48,19 +48,13 @@ const LocationGallery = ({
   };
 
   return (
-    <>
-      <div className={`pt-24 grid gap-4 px-4 overflow-hidden ${getGridColumns()}`}>
-        {gallery.map(image => (
-          <div key={image.url} className="col-span-1 relative h-70">
-            <Image src={image.url} alt={`${locationName} ${image.credit.name}`} />
-          </div>
-        ))}
-      </div>
-
-      <div className="px-6 lg:px-24 pt-12">
-        <div className="border-b border-gray-200 dark:border-none" />
-      </div>
-    </>
+    <div className={`pt-24 grid gap-6 lg:gap-4 px-6 lg:px-4 overflow-hidden ${getGridColumns()}`}>
+      {gallery.map(image => (
+        <div key={image.url} className="col-span-1 relative h-70">
+          <Image src={image.url} alt={`${locationName} ${image.credit.name}`} />
+        </div>
+      ))}
+    </div>
   );
 };
 

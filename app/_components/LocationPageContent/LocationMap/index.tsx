@@ -8,8 +8,7 @@ import { StyleSpecification } from 'maplibre-gl';
 import { useIsVisible } from '@/app/_hooks/useIsVisible';
 import Button from '@/app/_components/Library/Button';
 import useIsDarkMode from '@/app/_hooks/useIsDarkMode';
-const mapSize = 340;
-const mapSizeWithPadding = mapSize + 14;
+import useIsDesktop from '@/app/_hooks/useIsDesktop';
 
 export default function LocationMap({
   latitude,
@@ -20,6 +19,9 @@ export default function LocationMap({
   longitude: number;
   geojson?: GeoJSON.FeatureCollection;
 }) {
+  const isDesktop = useIsDesktop();
+  const mapSize = isDesktop ? 340 : 240;
+  const mapSizeWithPadding = mapSize + 14;
   const isDarkMode = useIsDarkMode();
   const [countryLayerOpacity, setCountryLayerOpacity] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -70,7 +72,7 @@ export default function LocationMap({
   }, []);
 
   return (
-    <div className="col-span-12 lg:col-span-4 lg:pr-18 ">
+    <div className="col-span-1 lg:col-span-4 lg:pr-18 ">
       <div className="relative flex flex-col items-center justify-center">
         <span className="font-display text-4xl font-bold px-6">N</span>
         <span className="border-l-2 border-black dark:border-gray-200 h-6 w-1 mb-2" />

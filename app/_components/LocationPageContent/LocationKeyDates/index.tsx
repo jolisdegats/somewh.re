@@ -8,7 +8,7 @@ const LocationKeyDates = ({
 }) => {
   const [activeDate, setActiveDate] = useState(0);
   return (
-    <div className="col-span-12 lg:col-span-8 lg:pl-18 lg:pr-36 pt-24">
+    <div className="col-span-1 lg:col-span-8 lg:pl-18 lg:pr-36 pt-6 lg:pt-24 pb-12 lg:pb-0">
       <div className="space-y-8">
         <h2 className="font-display text-4xl font-black tracking-wider mb-6 mt-4">Key dates</h2>
         <div className="relative">

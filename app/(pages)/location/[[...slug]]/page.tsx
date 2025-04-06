@@ -36,12 +36,12 @@ const LocationPage = async ({ params }: { params: Promise<LocationPageParams> })
         mainImagePosition={location.mainImage.imagePosition}
       />
 
-      <div className="relative grid grid-cols-1 lg:grid-cols-12 justify-start pt-12 md:pt-24 gap-8 lg:gap-16">
-        <div className="hidden lg:block lg:col-span-2 relative">
+      <div className="relative grid grid-cols-6 lg:grid-cols-12 justify-start pt-12 md:pt-24 gap-8 lg:gap-16">
+        <div className="col-span-1 lg:block lg:col-span-2 relative">
           <StickyLocationName locationName={location.name} />
         </div>
 
-        <div className="col-span-1 lg:col-span-8 justify-start gap-8 lg:gap-16 px-4 md:px-6 lg:px-0">
+        <div className="col-span-5 lg:col-span-8 justify-start gap-8 lg:gap-16 pl-2 pr-6 lg:pl-0 lg:pr-0">
           <LocationDetails locationDetails={location.details} locationName={location.name} />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
