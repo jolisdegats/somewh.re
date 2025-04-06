@@ -1161,7 +1161,7 @@ export const SAMPLE_LOCATIONS: Location[] = [
     type: ['nature'],
     religions: ['Islam', 'Christianity'],
     languages: ['Soqotri', 'Arabic'],
-    currency: 'Yemeni Rial (YR)',
+    currency: '﷼ Yemeni Riyal (YER)',
     details: [
       {
         category: 'Biodiversity',
@@ -1238,7 +1238,7 @@ export const SAMPLE_LOCATIONS: Location[] = [
         },
       },
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Dragon%27s_Blood_Tree%2C_Socotra_Is_%2812473612124%29.jpg/1600px-Dragon%27s_Blood_Tree%2C_Socotra_Is_%2812473612124%29.jpg?20140603062846',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wadi%2C_Socotra_Island_%2810941888296%29.jpg/1600px-Wadi%2C_Socotra_Island_%2810941888296%29.jpg',
         imagePosition: 'object-[50%_70%]',
         credit: {
           name: '',
@@ -1246,11 +1246,35 @@ export const SAMPLE_LOCATIONS: Location[] = [
         },
       },
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wadi%2C_Socotra_Island_%2810941888296%29.jpg/1600px-Wadi%2C_Socotra_Island_%2810941888296%29.jpg',
+        url: 'https://images.unsplash.com/photo-1642425146609-6c8ff4589d18',
         imagePosition: 'object-[50%_70%]',
         credit: {
-          name: '',
-          url: '',
+          name: 'Andrew Svk',
+          url: 'https://unsplash.com/photos/a-view-of-a-beach-from-a-high-point-of-view-xr5kxyB9yxM',
+        },
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1642425149556-b6f90e946859',
+        imagePosition: 'object-[50%_70%]',
+        credit: {
+          name: 'Andrew Svk',
+          url: 'https://unsplash.com/photos/a-tree-with-a-mountain-in-the-background-REwZEYzw19g',
+        },
+      },
+      {
+        url: 'https://live.staticflickr.com/4739/38895790482_46157f1c88_h.jpg',
+        imagePosition: 'object-[50%_70%]',
+        credit: {
+          name: 'Rod Waddington',
+          url: 'https://flic.kr/p/22g66ph',
+        },
+      },
+      {
+        url: 'https://live.staticflickr.com/4576/38849172371_bf33b477de_h.jpg',
+        imagePosition: 'object-[50%_70%]',
+        credit: {
+          name: 'Rod Waddington',
+          url: 'https://flic.kr/p/22bYasK',
         },
       },
     ],

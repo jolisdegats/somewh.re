@@ -9,8 +9,10 @@ const LocationDetails = ({
   locationName: string;
 }) => {
   return locationDetails?.map((detail, index) => (
-    <div key={detail.category} className="col-span-10 grid grid-cols-12 gap-16 m-x-16 space-y-16">
-      <div className={`${index % 2 === 0 ? 'order-2' : 'order-1'} col-span-6 relative`}>
+    <div key={detail.category} className="grid grid-cols-12 gap-16 m-x-16 space-y-16">
+      <div
+        className={`${index % 2 === 0 ? 'order-2' : 'order-1'} col-span-12 lg:col-span-6 relative`}
+      >
         <div className="grid grid-cols-1 gap-4 relative">
           {detail.image && (
             <div className="h-[250px] w-full overflow-hidden relative">
@@ -24,7 +26,9 @@ const LocationDetails = ({
           )}
         </div>
       </div>
-      <div className={`${index % 2 === 0 ? 'order-1' : 'order-2'} col-span-6 relative`}>
+      <div
+        className={`${index % 2 === 0 ? 'order-1' : 'order-2'} col-span-12 lg:col-span-6 relative`}
+      >
         <h2 className="font-display text-4xl font-black tracking-wider mb-6 mt-4">
           {detail.category}
         </h2>

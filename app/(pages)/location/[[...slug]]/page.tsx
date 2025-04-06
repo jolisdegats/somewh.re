@@ -24,7 +24,7 @@ const LocationPage = async ({ params }: { params: Promise<LocationPageParams> })
 
   return (
     <div className="grid gap-x-20">
-      <Pagination id={location.id} />
+      {/* <Pagination id={location.id} /> */}
       <LocationMain
         continent={location.continent}
         date={location.date}
@@ -64,15 +64,8 @@ const LocationPage = async ({ params }: { params: Promise<LocationPageParams> })
         </div>
 
         <div className="col-span-8 justify-start gap-16">
-          {/* DETAILS */}
           <LocationDetails locationDetails={location.details} locationName={location.name} />
-          {/* OTHER DETAILS */}
-          {/* <LocationAccessibility
-            bestTimeToVisit={location.bestTimeToVisit}
-            averageTemp={location.averageTemp}
-            languages={location.languages}
-            religions={location.religions}
-          /> */}
+
           <div className="grid grid-cols-12">
             <LocationKeyDates keyDates={location.keyDates} />
             <LocationMap

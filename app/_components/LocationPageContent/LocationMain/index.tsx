@@ -22,7 +22,7 @@ const LocationMain = ({
 }) => {
   return (
     <div className="grid grid-cols-12 min-h-screen">
-      <div className="col-span-6 p-16 flex flex-col justify-end">
+      <div className="col-span-12 lg:col-span-6 p-16 flex flex-col justify-end">
         <div className="max-w-2xl">
           <div className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400">
             {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
@@ -58,7 +58,7 @@ const LocationMain = ({
           </p>
         </div>
       </div>
-      <div className="col-span-6 relative">
+      <div className="col-span-12 lg:col-span-6 relative">
         <Image
           priority
           src={mainImageUrl}

@@ -9,10 +9,10 @@ const Header = ({ children }: { children: React.ReactNode }) => {
   const [{ y }] = useWindowScroll();
 
   useEffect(() => {
-    // const theme = localStorage.getItem('theme');
-    // if (theme === 'dark') {
-    //   document.documentElement.classList.add('dark');
-    // }
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
   }, []);
 
   const toggleTheme = () => {
