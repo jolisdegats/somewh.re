@@ -74,7 +74,7 @@ const LocationHeader = ({ location }: { location: Location }) => {
               transition-[width]
               duration-200
               ease-in-out
-              ${showVolume ? 'w-[80px]' : 'w-0'}
+              ${showVolume ? 'w-[50px] lg:w-[80px]' : 'w-0'}
             `}
           >
             <Slider value={volume} onChange={handleVolumeChange} min={0} max={100} step={1} />

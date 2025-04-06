@@ -4,7 +4,7 @@ import LocationDetails from '@/app/_components/LocationPageContent/LocationDetai
 import LocationAccessibility from '@/app/_components/LocationPageContent/LocationAccessibility';
 import LocationMap from '@/app/_components/LocationPageContent/LocationMap';
 import StickyLocationName from '@/app/_components/LocationPageContent/StickyLocationName';
-import Pagination from '@/app/_components/LocationPageContent/LocationPagination';
+// import Pagination from '@/app/_components/LocationPageContent/LocationPagination';
 import LocationGallery from '@/app/_components/LocationPageContent/LocationGallery';
 import LocationCredits from '@/app/_components/LocationPageContent/LocationCredits';
 import LocationKeyDates from '@/app/_components/LocationPageContent/LocationKeyDates';
