@@ -44,7 +44,7 @@ const LocationPage = async ({ params }: { params: Promise<LocationPageParams> })
         <div className="col-span-5 lg:col-span-8 justify-start gap-8 lg:gap-16 pl-2 pr-6 lg:pl-0 lg:pr-0">
           <LocationDetails locationDetails={location.details} locationName={location.name} />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <LocationKeyDates keyDates={location.keyDates} />
             <LocationMap
               geojson={location.geojson}
