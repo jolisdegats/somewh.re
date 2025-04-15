@@ -22,4 +22,11 @@
   .circle-clip {
     clip-path: circle(50% at 50% 50%);
   }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
