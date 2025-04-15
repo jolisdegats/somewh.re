@@ -45,12 +45,12 @@ const LocationPage = async ({ params }: { params: Promise<LocationPageParams> })
           <LocationDetails locationDetails={location.details} locationName={location.name} />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            <LocationKeyDates keyDates={location.keyDates} />
             <LocationMap
               geojson={location.geojson}
               latitude={location.coordinates.latitude}
               longitude={location.coordinates.longitude}
             />
+            <LocationKeyDates keyDates={location.keyDates} />
           </div>
           <LocationAccessibility
             averageTemp={location.averageTemp}
@@ -58,13 +58,14 @@ const LocationPage = async ({ params }: { params: Promise<LocationPageParams> })
             languages={location.languages}
             religions={location.religions}
           />
+          {!!location.gallery?.length && (
+            <LocationGallery gallery={location.gallery} locationName={location.name} />
+          )}
         </div>
+
         <div className="hidden lg:block lg:col-span-2 relative" />
       </div>
 
-      {!!location.gallery?.length && (
-        <LocationGallery gallery={location.gallery} locationName={location.name} />
-      )}
       <LocationCredits location={location} />
     </div>
   );

@@ -3,7 +3,7 @@
 import { Location } from '@/app/types';
 import Image from '@/app/_components/Library/Image';
 import { ImageModal } from './Modal';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 
 const LocationGallery = ({
   gallery,
@@ -58,6 +58,26 @@ const LocationGallery = ({
 
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  const thumbnailsContainerRef = useRef<HTMLDivElement>(null);
+
+  const [itemWidth, setItemWidth] = useState(150);
+
+  useEffect(() => {
+    const calculateWidth = () => {
+      const coefficient = document.documentElement.clientWidth > 1024 ? 0.6 : 0.9;
+      const calculatedWidth =
+        (document.documentElement.clientWidth * coefficient) / gallery.length -
+        14 +
+        14 / gallery.length;
+      setItemWidth(calculatedWidth < 150 ? 150 : calculatedWidth);
+    };
+
+    calculateWidth();
+
+    window.addEventListener('resize', calculateWidth);
+    return () => window.removeEventListener('resize', calculateWidth);
+  }, [gallery.length]);
+
   useEffect(() => {
     if (currentIndex !== displayedIndex) {
       setIsTransitioning(true);
@@ -78,13 +98,35 @@ const LocationGallery = ({
     setIsModalOpen(false);
   };
 
+  const scrollThumbnailIntoView = useCallback((index: number) => {
+    if (thumbnailsContainerRef.current) {
+      const thumbnail = thumbnailsContainerRef.current.children[index] as HTMLElement;
+      if (thumbnail) {
+        thumbnail.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center',
+        });
+      }
+    }
+  }, []);
+
   const nextImage = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1) % gallery.length);
-  }, [gallery]);
+    const nextIndex = (currentIndex + 1) % gallery.length;
+    setCurrentIndex(nextIndex);
+    scrollThumbnailIntoView(nextIndex);
+  }, [gallery.length, currentIndex, scrollThumbnailIntoView]);
 
   const previousImage = useCallback(() => {
-    setCurrentIndex(prev => (prev === 0 ? gallery.length - 1 : prev - 1));
-  }, [gallery]);
+    const prevIndex = currentIndex === 0 ? gallery.length - 1 : currentIndex - 1;
+    setCurrentIndex(prevIndex);
+    scrollThumbnailIntoView(prevIndex);
+  }, [gallery.length, currentIndex, scrollThumbnailIntoView]);
+
+  const handleThumbnailClick = (index: number) => {
+    setCurrentIndex(index);
+    scrollThumbnailIntoView(index);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -108,9 +150,9 @@ const LocationGallery = ({
           onPrevious={previousImage}
         />
       )}
-      <div className="space-y-4 w-full hidden lg:block mt-24">
+      <div className="space-y-4 w-full lg:block mt-24">
         <div
-          className="relative w-[60vw] h-[40vw] mx-auto overflow-hidden cursor-pointer"
+          className="relative w-full h-[60vw] lg:h-[40vw] mx-auto overflow-hidden cursor-pointer"
           onClick={() => openModal(currentIndex)}
         >
           <div className="absolute inset-0">
@@ -134,46 +176,38 @@ const LocationGallery = ({
             />
           </div>
         </div>
-        <div
-          onKeyDown={e => {
-            e.stopPropagation();
-            e.preventDefault();
-          }}
-          className="w-[60vw] mx-auto flex gap-4 overflow-x-auto hide-scrollbar pb-4 scroll-smooth"
-        >
-          {gallery.map((image, index) => (
-            <div
-              key={index}
-              className={`relative flex-shrink-0 w-[150px] aspect-[3/2] group overflow-hidden cursor-pointer`}
-              onClick={() => setCurrentIndex(index)}
-            >
-              <Image
-                fill
-                src={image.url}
-                alt={`${locationName} gallery ${index + 1}`}
-                className={`w-full h-full ${image.imagePosition}`}
-              />
+        <div className="w-full mx-auto relative">
+          <div
+            ref={thumbnailsContainerRef}
+            className="flex gap-4 overflow-x-auto hide-scrollbar pb-4 scroll-smooth"
+          >
+            {gallery.map((image, index) => (
               <div
-                className={`absolute w-full h-full bg-black/20 ${
-                  currentIndex === index ? 'opacity-100' : 'opacity-0'
-                } group-hover:opacity-100 transition-opacity`}
-              />
-            </div>
-          ))}
+                key={index}
+                style={{
+                  width: itemWidth,
+                }}
+                className={`relative flex-shrink-0 aspect-[3/2] group overflow-hidden cursor-pointer`}
+                onClick={() => handleThumbnailClick(index)}
+              >
+                <Image
+                  fill
+                  src={image.url}
+                  alt={`${locationName} gallery ${index + 1}`}
+                  className={`w-full h-full ${image.imagePosition}`}
+                />
+                <div
+                  className={`absolute w-full h-full bg-black/20 ${
+                    currentIndex === index ? 'opacity-100' : 'opacity-0'
+                  } group-hover:opacity-100 transition-opacity`}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
   );
-
-  // return (
-  //   <div className={`pt-24 grid gap-6 lg:gap-4 px-6 lg:px-4 overflow-hidden ${getGridColumns()}`}>
-  //     {gallery.map(image => (
-  //       <div key={image.url} className="col-span-1 relative h-70">
-  //         <Image src={image.url} alt={`${locationName} ${image.credit.name}`} />
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
 };
 
 export default LocationGallery;

@@ -6,7 +6,7 @@ const LocationKeyDates = ({
 }) => {
   // const [activeDate, setActiveDate] = useState(0);
   return (
-    <div className="col-span-1 lg:col-span-8 lg:pl-18 lg:pr-[160px] pt-6 pb-12 lg:pb-0">
+    <div className="col-span-1 lg:col-span-6 pt-6 pb-12 lg:pb-0">
       <div className="space-y-8">
         <h2 className="font-display text-4xl font-black tracking-wider mb-6 mt-4">Key dates</h2>
         {/* <div className="h-[300px] relative">
@@ -62,7 +62,7 @@ const LocationKeyDates = ({
               <div className="w-26 flex-shrink-0" />
             </div>
           </div>
-          <div className="absolute right-0 top-0 bottom-6 w-26 pointer-events-none bg-gradient-to-l from-white via-white/80 to-transparent" />
+          {/* <div className="absolute right-0 top-0 bottom-6 w-26 pointer-events-none bg-gradient-to-l from-white via-white/80 to-transparent" /> */}
         </div>
       </div>
     </div>
