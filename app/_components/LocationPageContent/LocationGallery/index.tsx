@@ -109,7 +109,6 @@ const LocationGallery = ({
   };
 
   useEffect(() => {
-    console.log('isGalleryVisible', isGalleryVisible);
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') nextImage();
       if (e.key === 'ArrowLeft') previousImage();

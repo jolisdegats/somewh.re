@@ -1,7 +1,7 @@
 'use client';
 
 import { useWindowScroll } from '@uidotdev/usehooks';
-import { Menu, SunMoon } from 'lucide-react';
+import { SunMoon } from 'lucide-react';
 import Button from '@/app/_components/Library/Button';
 import { useEffect } from 'react';
 
@@ -40,9 +40,9 @@ const Header = ({ children }: { children: React.ReactNode }) => {
           <Button className="p-2" onClick={toggleTheme}>
             <SunMoon size={24} />
           </Button>
-          <Button className="p-2">
+          {/* <Button className="p-2">
             <Menu size={24} />
-          </Button>
+          </Button> */}
         </nav>
       </div>
     </header>
