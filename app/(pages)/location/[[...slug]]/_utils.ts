@@ -1,4 +1,4 @@
-import { SAMPLE_LOCATIONS } from '../../../types';
+import { SAMPLE_LOCATIONS } from '@/app/data';
 
 export const getLocationBySlugOrLatest = (slug: string) => {
   return (

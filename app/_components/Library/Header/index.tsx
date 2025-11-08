@@ -35,7 +35,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
     >
       <div className="max-w-[1920px] mx-auto px-8 py-3">
         <nav className="flex items-center justify-between">
-          <h1 className="font-display text-2xl">Somewhe.re</h1>
+          <h1 className="font-display text-2xl">Somewh.re</h1>
           {children}
           <Button className="p-2" onClick={toggleTheme}>
             <SunMoon size={24} />

@@ -9,6 +9,7 @@ import LocationGallery from '@/app/_components/LocationPageContent/LocationGalle
 import LocationCredits from '@/app/_components/LocationPageContent/LocationCredits';
 import LocationKeyDates from '@/app/_components/LocationPageContent/LocationKeyDates';
 import { getLocationBySlugOrLatest } from './_utils';
+import { getDateFromDayOfYear } from '@/app/_utils/getDayOfYear';
 
 export interface LocationPageParams {
   slug: string;
@@ -17,7 +18,6 @@ export interface LocationPageParams {
 const LocationPage = async ({ params }: { params: Promise<LocationPageParams> }) => {
   const { slug } = await params;
   const location = getLocationBySlugOrLatest(slug[0]);
-
   if (!location) {
     return <div>Location not found</div>;
   }
@@ -26,7 +26,7 @@ const LocationPage = async ({ params }: { params: Promise<LocationPageParams> })
     <div className="grid gap-x-4 md:gap-x-20">
       <LocationMain
         continent={location.continent}
-        date={location.date}
+        date={getDateFromDayOfYear(Number(location.id))}
         type={location.type}
         name={location.name}
         country={location.country}
