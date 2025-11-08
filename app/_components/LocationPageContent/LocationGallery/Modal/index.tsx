@@ -87,6 +87,7 @@ export const ImageModal: React.FC<ImageModalProps> = ({
               alt={`Gallery image ${displayedIndex + 1}`}
               className={`w-full h-full ${images[displayedIndex].imagePosition}`}
               priority
+              sizes="(max-width: 1280px) 100vw, 1280px"
             />
           </div>
 
@@ -100,6 +101,7 @@ export const ImageModal: React.FC<ImageModalProps> = ({
               alt={`Gallery image ${currentIndex + 1}`}
               className={`w-full h-full ${images[currentIndex].imagePosition}`}
               priority
+              sizes="(max-width: 1280px) 100vw, 1280px"
             />
           </div>
         </div>

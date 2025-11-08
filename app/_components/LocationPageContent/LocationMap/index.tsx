@@ -95,6 +95,7 @@ export default function LocationMap({
             onMouseLeave={() => setCountryLayerOpacity(0)}
           >
             <Map
+              key={isDarkMode ? 'dark' : 'light'}
               onMoveEnd={map => {
                 setLocationCoords({
                   lat: map.target.getCenter()?.lat ?? 0,

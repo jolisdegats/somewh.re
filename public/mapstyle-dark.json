@@ -113,7 +113,6 @@
     {
       "id": "water",
       "type": "fill",
-      "raster-opacity": 0,
       "source": "openmaptiles",
       "source-layer": "water",
       "filter": ["==", "$type", "Polygon"],
@@ -182,7 +181,6 @@
       "url": "https://tiles.stadiamaps.com/data/openmaptiles.json"
     }
   },
-  "sprite": "https://tiles.stadiamaps.com/styles/alidade-smooth/sprite",
   "version": 8,
   "zoom": 0.89026415
 }

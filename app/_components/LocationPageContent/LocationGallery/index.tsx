@@ -141,6 +141,7 @@ const LocationGallery = ({
               alt={locationName}
               priority
               className={`w-full h-full ${gallery[displayedIndex].imagePosition}`}
+              sizes="(max-width: 1024px) 100vw, 60vw"
             />
           </div>
           <div
@@ -176,6 +177,7 @@ const LocationGallery = ({
                     src={image.url}
                     alt={`${locationName} gallery ${index + 1}`}
                     className={`w-full h-full ${image.imagePosition}`}
+                    sizes="170px"
                   />
                   <div
                     className={`absolute w-full h-full bg-black/40 ${
