@@ -1,5 +1,5 @@
 import LayoutWithHeader from '@/app/_components/Layout/LayoutWithHeader';
-import { getLocationBySlugOrLatest } from './_utils';
+import { getLocationBySlugOrDayOfYear } from './_utils';
 import { LocationPageParams } from './page';
 import LocationHeader from '@/app/_components/LocationPageContent/LocationHeader';
 
@@ -11,7 +11,10 @@ const LocationLayout = async ({
   params: Promise<LocationPageParams>;
 }) => {
   const { slug } = await params;
-  const location = getLocationBySlugOrLatest(slug[0]);
+  const location = getLocationBySlugOrDayOfYear(slug?.[0]);
+  if (!location) {
+    return <div>Location not found</div>;
+  }
   return (
     <LayoutWithHeader headerChildren={<LocationHeader location={location} />}>
       {children}

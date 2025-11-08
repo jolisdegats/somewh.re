@@ -8,16 +8,18 @@ import StickyLocationName from '@/app/_components/LocationPageContent/StickyLoca
 import LocationGallery from '@/app/_components/LocationPageContent/LocationGallery';
 import LocationCredits from '@/app/_components/LocationPageContent/LocationCredits';
 import LocationKeyDates from '@/app/_components/LocationPageContent/LocationKeyDates';
-import { getLocationBySlugOrLatest } from './_utils';
+import { getLocationBySlugOrDayOfYear } from './_utils';
 import { getDateFromDayOfYear } from '@/app/_utils/getDayOfYear';
 
 export interface LocationPageParams {
-  slug: string;
+  slug?: string[];
 }
 
 const LocationPage = async ({ params }: { params: Promise<LocationPageParams> }) => {
   const { slug } = await params;
-  const location = getLocationBySlugOrLatest(slug[0]);
+
+  // If slug exists, use it; otherwise use day of year (homepage case)
+  const location = getLocationBySlugOrDayOfYear(slug?.[0]);
   if (!location) {
     return <div>Location not found</div>;
   }
