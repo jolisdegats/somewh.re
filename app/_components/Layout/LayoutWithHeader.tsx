@@ -1,5 +1,6 @@
 import Footer from '@/app/_components/Library/Footer';
 import Header from '@/app/_components/Library/Header';
+import RandomPlanetButton from '@/app/_components/Library/RandomPlanetButton';
 
 const LayoutWithHeader = ({
   children,
@@ -17,6 +18,7 @@ const LayoutWithHeader = ({
         </div>
       </main>
       <Footer />
+      <RandomPlanetButton />
     </div>
   );
 };
