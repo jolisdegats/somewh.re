@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from '@/app/_components/Library/Icons/Chevron';
+import { Cross } from '@/app/_components/Library/Icons/Cross';
 import Image from '@/app/_components/Library/Image';
 
 interface ImageModalProps {
@@ -62,7 +63,7 @@ export const ImageModal: React.FC<ImageModalProps> = ({
         onClick={onClose}
         className="absolute top-4 right-4 text-white/80 hover:text-white p-2 transition-colors cursor-pointer"
       >
-        <X size={28} />
+        <Cross size={28} />
       </button>
 
       <button

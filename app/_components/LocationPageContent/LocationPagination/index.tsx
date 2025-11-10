@@ -1,6 +1,6 @@
 'use client';
-import { SAMPLE_LOCATIONS } from '@/app/types';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { SAMPLE_LOCATIONS } from '@/app/data';
+import { ChevronLeft, ChevronRight } from '@/app/_components/Library/Icons/Chevron';
 import Link from 'next/link';
 import { useState } from 'react';
 const LocationPagination = ({ id }: { id: string }) => {

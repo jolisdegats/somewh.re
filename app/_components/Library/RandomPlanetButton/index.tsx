@@ -34,7 +34,7 @@ const RandomPlanetButton = () => {
   return (
     <button
       onClick={handleRandomLocation}
-      className={`fixed bottom-0 right-0 z-50 p-4 rounded-tl-3xl rounded-tr-3xl hover:opacity-80 transition-opacity shadow-lg ${
+      className={`fixed bottom-0 right-0 z-40 p-4 rounded-tl-3xl rounded-tr-3xl hover:opacity-80 transition-opacity shadow-lg ${
         isDarkMode ? 'bg-black text-white' : 'bg-white text-black'
       }`}
       aria-label="Go to random location"

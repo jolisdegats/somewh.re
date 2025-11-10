@@ -1,7 +1,7 @@
 'use client';
 
 import { useWindowScroll } from '@uidotdev/usehooks';
-import { SunMoon } from 'lucide-react';
+import { LuSunMoon } from 'react-icons/lu';
 import Button from '@/app/_components/Library/Button';
 import { useEffect } from 'react';
 
@@ -38,7 +38,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
           <h1 className="font-display text-2xl">Somewh.re</h1>
           {children}
           <Button className="p-2" onClick={toggleTheme}>
-            <SunMoon size={24} />
+            <LuSunMoon size={24} />
           </Button>
           {/* <Button className="p-2">
             <Menu size={24} />

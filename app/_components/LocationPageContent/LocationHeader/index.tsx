@@ -1,9 +1,9 @@
 'use client';
 import { useRef, useState } from 'react';
 import Button from '@/app/_components/Library/Button';
-import { VolumeOff, Volume1, Volume2 } from 'lucide-react';
 import { Location } from '@/app/types';
 import Slider from '@/app/_components/Library/Slider';
+import { VolumeHigh, VolumeLow, VolumeMute } from '@/app/_components/Library/Icons/Volume';
 
 const LocationHeader = ({ location }: { location: Location }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -53,7 +53,14 @@ const LocationHeader = ({ location }: { location: Location }) => {
     }, 1000);
   };
 
-  const VolumeIcon = volume === 0 ? VolumeOff : volume > 50 ? Volume2 : Volume1;
+  const VolumeIcon =
+    volume === 0 ? (
+      <VolumeMute size={20} onClick={toggleVolume} />
+    ) : volume > 50 ? (
+      <VolumeHigh size={20} onClick={toggleVolume} />
+    ) : (
+      <VolumeLow size={20} onClick={toggleVolume} />
+    );
 
   return (
     <div className="h-full w-full flex items-center justify-end  mr-2">
@@ -79,9 +86,7 @@ const LocationHeader = ({ location }: { location: Location }) => {
           >
             <Slider value={volume} onChange={handleVolumeChange} min={0} max={100} step={1} />
           </div>
-          <div className="flex items-center justify-center">
-            <VolumeIcon size={20} onClick={toggleVolume} />
-          </div>
+          <div className="flex items-center justify-center">{VolumeIcon}</div>
         </Button>
       </div>
     </div>
