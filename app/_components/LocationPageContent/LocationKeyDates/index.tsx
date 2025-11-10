@@ -18,17 +18,19 @@ const LocationKeyDates = ({
           const isActive = index === activeIndex;
 
           const containerWidth = 500;
-          const activeWidth = 330;
+          const inactiveWidth = 50;
           const totalInactiveCards = keyDates.length - 1;
-          const remainingSpace = containerWidth - activeWidth;
+          const overlap = 30;
 
-          let inactiveWidth = 0;
-          let overlap = 0;
+          // Calculate total space taken by inactive cards (accounting for overlaps)
+          // First card takes full width, each subsequent card adds (width - overlap)
+          const totalInactiveSpace =
+            totalInactiveCards > 0
+              ? inactiveWidth + (totalInactiveCards - 1) * (inactiveWidth - overlap)
+              : 0;
 
-          if (totalInactiveCards > 0) {
-            inactiveWidth = Math.max(70, Math.min(100, remainingSpace / totalInactiveCards));
-            overlap = Math.max(30, inactiveWidth * 0.5);
-          }
+          // Active width is the remaining space
+          const activeWidth = containerWidth - totalInactiveSpace;
 
           let leftPosition = 0;
 
@@ -78,7 +80,7 @@ const LocationKeyDates = ({
             >
               <div className="h-full flex flex-col">
                 <div className="flex items-baseline gap-4 mb-6 w-full align-text-top justify-end">
-                  <span className="font-display text-4xl text-white rotate-90 mt-[30px]">
+                  <span className="font-display text-4xl text-white rotate-90 mt-[30px] -mr-[10px]">
                     {date.year}
                   </span>
                   {/* {isActive && <div className="w-12 h-[1px] bg-gray-200 dark:bg-gray-700" />} */}
