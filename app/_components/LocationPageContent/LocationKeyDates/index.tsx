@@ -14,53 +14,17 @@ const LocationKeyDates = ({
       <h2 className="font-display text-4xl font-black mb-8">Key dates</h2>
 
       <div className="relative overflow-hidden" style={{ width: '500px', height: '400px' }}>
-        {keyDates.map((date, index) => {
+        {keyDates.map((date, index, array) => {
           const isActive = index === activeIndex;
-
-          const containerWidth = 500;
-          const inactiveWidth = 50;
-          const totalInactiveCards = keyDates.length - 1;
-          const overlap = 30;
-
-          // Calculate total space taken by inactive cards (accounting for overlaps)
-          // First card takes full width, each subsequent card adds (width - overlap)
-          const totalInactiveSpace =
-            totalInactiveCards > 0
-              ? inactiveWidth + (totalInactiveCards - 1) * (inactiveWidth - overlap)
-              : 0;
-
-          // Active width is the remaining space
-          const activeWidth = containerWidth - totalInactiveSpace;
-
-          let leftPosition = 0;
-
-          if (index === 0) {
-            leftPosition = 0;
-          } else {
-            let cumulativeWidth = 0;
-            for (let i = 0; i < index; i++) {
-              if (i === activeIndex) {
-                cumulativeWidth += activeWidth;
-              } else {
-                cumulativeWidth += inactiveWidth;
-              }
-              cumulativeWidth -= overlap;
-            }
-            leftPosition = cumulativeWidth;
-
-            if (isActive) {
-              let inactivePosition = 0;
-              for (let i = 0; i < index; i++) {
-                inactivePosition += inactiveWidth;
-                inactivePosition -= overlap;
-              }
-              leftPosition = inactivePosition;
-            }
-          }
-
-          const zIndex = keyDates.length - index;
-
-          const width = isActive ? activeWidth : inactiveWidth;
+          const overlap = 40;
+          const rightPosition =
+            activeIndex > index
+              ? 500 - (overlap * index + overlap)
+              : (array.length - index - 1) * overlap;
+          const activeWidth = 500 - array.length * overlap + overlap + (index !== 0 ? overlap : 0);
+          const inactiveWidth = index === 0 ? overlap : overlap * index + overlap;
+          const width = activeIndex > index ? inactiveWidth : activeWidth;
+          // const textLeftPadding = index !== 0 && overlap * index;
 
           return (
             <div
@@ -69,27 +33,29 @@ const LocationKeyDates = ({
                 index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-900' : 'bg-gray-100 dark:bg-gray-800'
               }`}
               style={{
-                left: `${leftPosition}px`,
+                right: `${rightPosition}px`,
                 top: '0',
                 width: `${width}px`,
                 height: '400px',
-                zIndex,
-                opacity: 1, // All cards are visible
+                zIndex: 50 - index,
+                opacity: 1,
               }}
               onClick={() => setActiveIndex(index)}
             >
               <div className="h-full flex flex-col">
-                <div className="flex items-baseline gap-4 mb-6 w-full align-text-top justify-end">
-                  <span className="font-display text-4xl text-white rotate-90 mt-[30px] -mr-[10px]">
-                    {date.year}
-                  </span>
+                <div
+                  className="flex items-baseline gap-4 mb-6 w-full align-text-top justify-end mt-[30px]"
+                  style={{ writingMode: 'vertical-rl' }}
+                >
+                  <span className="font-display text-4xl text-white">{date.year}</span>
                   {/* {isActive && <div className="w-12 h-[1px] bg-gray-200 dark:bg-gray-700" />} */}
                 </div>
                 {/* {isActive && ( */}
                 <div
-                  className={`p-8 ${index > 0 ? 'ml-[30px]' : 'ml-0'}
+                  className={`${isActive ? 'p-8' : 'p-0'} ${index > 0 ? 'ml-[30px]' : 'ml-0'}
                     ${isActive ? 'opacity-100' : 'opacity-0'}
                    overflow-hidden transition-opacity duration-300`}
+                  // style={{ paddingLeft: `${textLeftPadding}px` }}
                 >
                   <h3 className="text-xl font-medium mb-3">{date.title}</h3>
                   {date.description && (
