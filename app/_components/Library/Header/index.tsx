@@ -4,9 +4,11 @@ import { useWindowScroll } from '@uidotdev/usehooks';
 import { LuSunMoon } from 'react-icons/lu';
 import Button from '@/app/_components/Library/Button';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Header = ({ children }: { children: React.ReactNode }) => {
   const [{ y }] = useWindowScroll();
+  const router = useRouter();
 
   useEffect(() => {
     const theme = localStorage.getItem('theme');
@@ -35,7 +37,9 @@ const Header = ({ children }: { children: React.ReactNode }) => {
     >
       <div className="max-w-[1920px] mx-auto px-8 py-3">
         <nav className="flex items-center justify-between">
-          <h1 className="font-display text-2xl">Somewh.re</h1>
+          <button onClick={() => router.push('/')}>
+            <h1 className="font-display text-2xl">Somewh.re</h1>
+          </button>
           {children}
           <Button className="p-2" onClick={toggleTheme}>
             <LuSunMoon size={24} />
