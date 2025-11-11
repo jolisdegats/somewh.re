@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const LocationKeyDates = ({
   keyDates,
@@ -8,20 +8,35 @@ const LocationKeyDates = ({
   keyDates: { year: number; title: string; description?: string }[];
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(500);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
   return (
-    <div className="col-span-1 lg:col-span-6 pt-6 pb-12 lg:pb-0">
+    <div className="col-span-1 lg:col-span-6 pb-12 lg:pb-0">
       <h2 className="font-display text-4xl font-black mb-8">Key dates</h2>
 
-      <div className="relative overflow-hidden" style={{ width: '500px', height: '400px' }}>
+      <div ref={containerRef} className="relative overflow-hidden w-full h-[400px]">
         {keyDates.map((date, index, array) => {
           const isActive = index === activeIndex;
           const overlap = 40;
           const rightPosition =
             activeIndex > index
-              ? 500 - (overlap * index + overlap)
+              ? containerWidth - (overlap * index + overlap)
               : (array.length - index - 1) * overlap;
-          const activeWidth = 500 - array.length * overlap + overlap + (index !== 0 ? overlap : 0);
+          const activeWidth =
+            containerWidth - array.length * overlap + overlap + (index !== 0 ? overlap : 0);
           const inactiveWidth = index === 0 ? overlap : overlap * index + overlap;
           const width = activeIndex > index ? inactiveWidth : activeWidth;
           // const textLeftPadding = index !== 0 && overlap * index;
@@ -48,7 +63,7 @@ const LocationKeyDates = ({
                   style={{ writingMode: 'vertical-rl' }}
                 >
                   <span
-                    className={`font-display text-4xl text-gray-400 dark:text-gray-400 
+                    className={`font-display text-4xl text-gray-400 dark:text-gray-500 
                      }
                     `}
                   >
@@ -61,7 +76,7 @@ const LocationKeyDates = ({
                   className={`${isActive ? 'p-8' : 'p-0'} ${index > 0 ? 'ml-[30px]' : 'ml-0'}
                       ${isActive ? 'opacity-100' : 'opacity-0'}
                     overflow-hidden transition-opacity duration-300`}
-                  style={{ width: isActive ? '300px' : '0' }}
+                  style={{ width: isActive ? '90%' : '0' }}
                 >
                   <h3 className="text-xl font-medium mb-3">{date.title}</h3>
                   {date.description && (
