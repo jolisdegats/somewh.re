@@ -29,15 +29,15 @@ const LocationKeyDates = ({
           return (
             <div
               key={index}
-              className={`absolute top-0 h-full rounded-3xl transition-all duration-300 ease-in-out cursor-pointer ${
-                index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-900' : 'bg-gray-100 dark:bg-gray-800'
+              className={`absolute top-0 h-full rounded-3xl transition-all duration-200 ease-in-out cursor-pointer ${
+                index % 2 === 0 ? 'bg-gray-100 dark:bg-gray-900' : 'bg-gray-200 dark:bg-gray-800'
               }`}
               style={{
                 right: `${rightPosition}px`,
                 top: '0',
                 width: `${width}px`,
                 height: '400px',
-                zIndex: 50 - index,
+                zIndex: 20 - index,
                 opacity: 1,
               }}
               onClick={() => setActiveIndex(index)}
@@ -47,15 +47,21 @@ const LocationKeyDates = ({
                   className="flex items-baseline gap-4 mb-6 w-full align-text-top justify-end mt-[30px]"
                   style={{ writingMode: 'vertical-rl' }}
                 >
-                  <span className="font-display text-4xl text-white">{date.year}</span>
+                  <span
+                    className={`font-display text-4xl text-gray-400 dark:text-gray-400 
+                     }
+                    `}
+                  >
+                    {date.year}
+                  </span>
                   {/* {isActive && <div className="w-12 h-[1px] bg-gray-200 dark:bg-gray-700" />} */}
                 </div>
                 {/* {isActive && ( */}
                 <div
                   className={`${isActive ? 'p-8' : 'p-0'} ${index > 0 ? 'ml-[30px]' : 'ml-0'}
-                    ${isActive ? 'opacity-100' : 'opacity-0'}
-                   overflow-hidden transition-opacity duration-300`}
-                  // style={{ paddingLeft: `${textLeftPadding}px` }}
+                      ${isActive ? 'opacity-100' : 'opacity-0'}
+                    overflow-hidden transition-opacity duration-300`}
+                  style={{ width: isActive ? '300px' : '0' }}
                 >
                   <h3 className="text-xl font-medium mb-3">{date.title}</h3>
                   {date.description && (
