@@ -178,7 +178,9 @@
     "openmaptiles": {
       "type": "vector",
       "scheme": "xyz",
-      "url": "https://tiles.stadiamaps.com/data/openmaptiles.json"
+      "url": "https://tiles.stadiamaps.com/data/openmaptiles.json",
+      "minzoom": 0,
+      "maxzoom": 14
     }
   },
   "version": 8,

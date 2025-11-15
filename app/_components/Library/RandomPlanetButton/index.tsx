@@ -1,13 +1,16 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { BsGlobeAmericas } from 'react-icons/bs';
 import { SAMPLE_LOCATIONS } from '@/app/data';
 import useIsDarkMode from '@/app/_hooks/useIsDarkMode';
 import { useState, useEffect } from 'react';
 
+const STORAGE_KEY = 'visited-locations';
+
 const RandomPlanetButton = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const isDarkMode = useIsDarkMode();
   const [mounted, setMounted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -16,17 +19,50 @@ const RandomPlanetButton = () => {
     setMounted(true);
   }, []);
 
+  const getVisitedSlugs = (): Set<string> => {
+    if (typeof window === 'undefined') return new Set();
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored ? new Set(JSON.parse(stored)) : new Set();
+    } catch {
+      return new Set();
+    }
+  };
+
+  const saveVisitedSlugs = (slugs: Set<string>) => {
+    if (typeof window === 'undefined') return;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(slugs)));
+    } catch {
+      // Ignore localStorage errors
+    }
+  };
+
   const handleRandomLocation = () => {
     setIsAnimating(true);
 
     const uniqueLocations = SAMPLE_LOCATIONS.filter(
       (location, index, self) => index === self.findIndex(l => l.slug === location.slug)
     );
+    const currentSlug = pathname?.split('/').pop();
+    let visitedSlugs = getVisitedSlugs();
+    let availableLocations = uniqueLocations.filter(
+      loc => loc.slug !== currentSlug && !visitedSlugs.has(loc.slug)
+    );
 
-    const randomIndex = Math.floor(Math.random() * uniqueLocations.length);
-    const randomLocation = uniqueLocations[randomIndex];
+    // If all locations have been visited, reset the history (but still exclude current)
+    if (availableLocations.length === 0) {
+      visitedSlugs = new Set();
+      saveVisitedSlugs(visitedSlugs);
+      availableLocations = uniqueLocations.filter(loc => loc.slug !== currentSlug);
+    }
 
-    // Reset animation after it completes
+    const randomIndex = Math.floor(Math.random() * availableLocations.length);
+    const randomLocation = availableLocations[randomIndex];
+
+    visitedSlugs.add(randomLocation.slug);
+    saveVisitedSlugs(visitedSlugs);
+
     setTimeout(() => {
       setIsAnimating(false);
     }, 600);
