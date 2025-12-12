@@ -5,7 +5,7 @@ export const MadagascarMadagascar: Location = {
   audio: '/audio/Madagascar.wav',
   name: 'Madagascar',
   description:
-    "Separated from Africa 88 million years ago, Madagascar evolved in isolation to become one of the world's most biodiverse hotspots. Over 90% of its wildlife exists nowhere else on Earth, including lemurs, chameleons, and the fossa. The island's unique ecosystems range from spiny forests to rainforests, each harboring species found nowhere else on the planet.",
+    "Separated from Africa 88 million years ago, Madagascar evolved in isolation into a biodiversity hotspot. Over 90% of its wildlife exists nowhere else on Earth, including all lemur species, unique chameleons, and the fossa, creating a living evolutionary laboratory.",
   shortDescription: 'Island of unique biodiversity where 90% of species are endemic',
   coordinates: {
     latitude: -18.7669,

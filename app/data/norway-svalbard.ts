@@ -5,7 +5,7 @@ export const NorwaySvalbard: Location = {
   audio: '/audio/Svalbard.wav',
   name: 'Svalbard',
   description:
-    "An Arctic archipelago located halfway between mainland Norway and the North Pole, Svalbard is a land of extremes. With polar bears outnumbering humans, 24-hour darkness in winter and midnight sun in summer, this remote territory offers a glimpse into one of the planet's last true wildernesses. The Svalbard Global Seed Vault, buried deep in permafrost, safeguards the world's agricultural heritage.",
+    "Halfway between Norway and the North Pole, Svalbard is a land of extremes where polar bears outnumber humans. With 24-hour darkness in winter and midnight sun in summer, this Arctic wilderness hosts the Global Seed Vault safeguarding humanity's crops.",
   shortDescription: 'Arctic archipelago where polar bears outnumber humans',
   coordinates: {
     latitude: 78.2232,

@@ -5,7 +5,7 @@ export const BoliviaSalarDeUyuni: Location = {
   audio: '/audio/SalarUyuni.wav',
   name: 'Salar de Uyuni',
   description:
-    "The world's largest salt flat stretches across 10,582 square kilometers of the Bolivian Altiplano. During the rainy season, a thin layer of water transforms this vast expanse into a perfect mirror, reflecting the sky in an endless horizon. Beneath the salt crust lies half of the world's lithium reserves, making this otherworldly landscape both beautiful and strategically significant.",
+    "The world's largest salt flat transforms into a perfect mirror during the rainy season, reflecting endless sky. Beneath its vast white expanse lies half the world's lithium reserves, making this Bolivian wonder both breathtaking and strategic.",
   shortDescription: "The world's largest salt flat creating a perfect mirror of the sky",
   coordinates: {
     latitude: -20.1338,

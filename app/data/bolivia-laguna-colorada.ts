@@ -5,7 +5,7 @@ export const BoliviaLagunaColorada: Location = {
   audio: '/audio/LagunaColorada.wav',
   name: 'Laguna Colorada',
   description:
-    'A shallow salt lake in the Bolivian Altiplano, Laguna Colorada is renowned for its striking red color caused by red algae and sediments. Located at over 4,000 meters above sea level in the Eduardo Avaroa Andean Fauna National Reserve, this surreal landscape is home to thousands of flamingos, creating a vibrant contrast between the red waters and the white salt deposits.',
+    'A shallow salt lake in the Bolivian Altiplano, renowned for its striking red color from algae and sediments. At over 4,000 meters altitude, this surreal landscape hosts thousands of flamingos against a backdrop of red waters and white salt.',
   shortDescription: 'A red salt lake in the Bolivian Altiplano, home to thousands of flamingos',
   coordinates: {
     latitude: -22.1833,
