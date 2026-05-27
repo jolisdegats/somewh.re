@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from '@/app/_components/Library/Icons/Chevron';
-import { Cross } from '@/app/_components/Library/Icons/Cross';
+import { ChevronLeft, ChevronRight } from '@/app/_components/Library/Icons/Chevron';  
 import Image from '@/app/_components/Library/Image';
+import { Cross } from '@/app/_components/Library/Icons/Cross';
 
 interface ImageModalProps {
   images: {
